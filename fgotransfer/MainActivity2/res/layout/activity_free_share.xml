@@ -1,0 +1,79 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/c1" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp" >
+
+        <ImageView
+            android:id="@+id/iv_free_share_icon_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:contentDescription="@null"
+            android:src="@drawable/ic_freeshare" />
+
+        <ImageView
+            android:id="@+id/iv_free_share_triangle_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/iv_free_share_icon_1"
+            android:contentDescription="@null"
+            android:background="@drawable/bg_dialog" />
+
+        <TextView
+            android:id="@+id/tv_free_share_step1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/iv_free_share_triangle_1"
+            android:layout_toRightOf="@+id/iv_free_share_triangle_1"
+            android:background="@color/c1"
+            android:padding="10dp"
+            android:textColor="@color/c2"
+            android:textSize="@dimen/t3" />
+
+        <ImageView
+            android:id="@+id/iv_free_share_icon_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_free_share_step1"
+            android:layout_marginTop="10dp"
+            android:layout_toLeftOf="@+id/iv_free_share_triangle_1"
+            android:contentDescription="@null"
+            android:src="@drawable/ic_freeshare" />
+
+        <ImageView
+            android:id="@+id/iv_free_share_triangle_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_free_share_step1"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@+id/iv_free_share_icon_2"
+            android:contentDescription="@null"
+            android:background="@drawable/bg_dialog" />
+
+        <TextView
+            android:id="@+id/tv_free_share_step2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/tv_free_share_step1"
+            android:layout_below="@+id/tv_free_share_step1"
+            android:layout_marginTop="10dp"
+            android:background="@color/c1"
+            android:contentDescription="@null"
+            android:paddingBottom="5dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="10dp"
+            android:textColor="@color/c2"
+            android:textSize="@dimen/t3" />
+    </RelativeLayout>
+
+</ScrollView>

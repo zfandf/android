@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_dialog_below_button_single"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/white"
+    android:paddingTop="8dp" >
+
+    <View
+        android:id="@+id/view_dialog_below_line"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/c4" />
+
+    <View
+        android:id="@+id/view_dialog_button_division"
+        android:layout_width="1dp"
+        android:layout_height="40dp"
+        android:layout_centerHorizontal="true"
+        android:background="@color/c4" />
+
+    <Button
+        android:id="@+id/btn_dialog_right"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/view_dialog_below_line"
+        android:layout_toLeftOf="@+id/view_dialog_button_division"
+        android:layout_toRightOf="@+id/view_dialog_button_division"
+        android:background="@drawable/bg_dialog_btn"
+        android:paddingBottom="8dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingTop="8dp"
+        android:textColor="@color/c4"
+        android:textSize="@dimen/t3" />
+
+    <Button
+        android:id="@+id/btn_dialog_left"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_alignBaseline="@+id/btn_dialog_right"
+        android:layout_alignBottom="@+id/btn_dialog_right"
+        android:layout_alignParentLeft="true"
+        android:layout_toLeftOf="@+id/view_dialog_button_division"
+        android:background="@drawable/bg_dialog_btn"
+        android:paddingBottom="8dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingTop="8dp"
+        android:textColor="@color/c4"
+        android:textSize="@dimen/t3" />
+
+</RelativeLayout>

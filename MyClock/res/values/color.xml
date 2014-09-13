@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="c1">#ffffff</color>
+    <color name="c2">#404040</color>
+    <color name="c3">#c4c4c4</color>
+    <color name="c4">#0be8b6</color>
+    <color name="c5">#818181</color>
+    <color name="c6">#e8e8e8</color>
+    <color name="c7">#b3d0c8</color>
+    <color name="c8">#65cc9a</color>
+    <color name="c9">#f8f8f8</color>
+    <color name="c10">#c1c1c1</color>
+
+    <!-- file chooser -->
+    <color name="item_shade">#99000000</color>
+    <color name="btn_disable">#B2FFFFFF</color>
+    <color name="btn_text_disable">#4c0be8b6</color>
+
+    <!-- actionbar -->
+    <color name="c8_actionbar">#80000000</color>
+
+</resources>

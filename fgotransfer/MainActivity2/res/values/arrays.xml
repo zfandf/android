@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="tab_file_type">
+        <item>Apps</item>
+        <item>Images</item>
+        <item>Videos</item>
+        <item>Musics</item>
+        <item>All files</item>
+    </string-array>
+    <string-array name="share_btn_names">
+        <item>SMS</item>
+        <item>Mail</item>
+        <item>QR code</item>
+        <item>Other</item>
+    </string-array>
+    <string-array name="menu">
+        <item>Device name</item>
+        <item>Received files</item>
+        <item>Settings</item>
+        <item>Feedback</item>
+        <item>About</item>
+    </string-array>
+    <string-array name="file_options">
+        <item>Open</item>
+        <item>Delete</item>
+        <item>Info</item>
+    </string-array>
+
+</resources>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    <ProgressBar 
+        android:id="@+id/progress_bar"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        style="@style/Widget.AppCompat.Base.ProgressBar.Horizontal" />
+     
+    <WebView
+        android:id="@+id/wv_notice_detail"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" >
+    </WebView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_ll_web_view_bottom"
+        android:baselineAligned="false"
+        android:orientation="horizontal" >
+
+        <ImageButton
+            android:id="@+id/ib_web_goback"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@null"
+            android:src="@drawable/bg_btn_cannot_go_back" 
+            android:contentDescription="@null"/>
+
+        <ImageButton
+            android:id="@+id/ib_web_goforward"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@null"
+            android:src="@drawable/bg_btn_cannot_go_forward" 
+            android:contentDescription="@null"/>
+
+        <ImageButton
+            android:id="@+id/ib_web_reload"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@null"
+            android:src="@drawable/bg_btn_reload" 
+            android:contentDescription="@null"/>
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+	android:id="@+id/tv_group_name"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:drawableLeft="@drawable/img_picture_group"
+    android:drawablePadding="10dp"
+    android:textSize="@dimen/t4"
+    android:textColor="@color/c5"
+    android:paddingLeft="7dp"
+    android:paddingTop="10dp"
+    android:paddingBottom="7.5dp"
+    android:singleLine="true" />
+

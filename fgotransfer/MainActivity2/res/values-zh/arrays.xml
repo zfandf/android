@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="tab_file_type">
+        <item>应用</item>
+        <item>图片</item>
+        <item>影音</item>
+        <item>文件</item>
+    </string-array>
+    <string-array name="share_btn_names">
+        <item>短信</item>
+        <item>邮件</item>
+        <item>朋友圈</item>
+        <item>微信好友</item>
+        <item>微博</item>
+        <item>二维码</item>
+        <item>其他</item>
+    </string-array>
+    <string-array name="menu">
+        <item>设备名称</item>
+        <item>连接IPhone</item>
+        <item>连接电脑</item>
+        <item>意见反馈</item>
+        <item>设置</item>
+        <item>关于</item>
+    </string-array>
+    <string-array name="file_options">
+        <item>打开</item>
+        <item>删除</item>
+        <item>属性</item>
+    </string-array>
+
+    <array name="nav_icons">
+        <item>@drawable/ic_nav_name</item>
+        <item>@drawable/ic_nav_receivefile</item>
+        <item>@drawable/ic_nav_receivefile</item>
+        <item>@drawable/ic_nav_feedback</item>
+        <item>@drawable/ic_nav_setting</item>
+        <item>@drawable/ic_nav_about</item>
+    </array>
+
+</resources>

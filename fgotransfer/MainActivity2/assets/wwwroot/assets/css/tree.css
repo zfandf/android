@@ -1,0 +1,20 @@
+
+.dirtree {border:1px solid #ddd; height:300px; overflow-y:auto;}
+.dirtree,
+.dirtree ul {list-style:none; padding:0; margin:0;}
+
+.treeview-node {padding:5px 0 5px 15px;}
+.treeview-node.selected {background:#e5f0fb;}
+.treeview-node p {padding-left:15px; position:relative; margin:0;}
+.treeview-node .plus {position: absolute; left:0; top:3px;}
+.treenode-empty .plus {display:none;}
+
+.treeview-node+ul {display:none;}
+.treeview-node._minus+ul {display:block;}
+
+.treeview-node .dir-icon {background-image:url(../image/folder-32.png); float:left; height:20px; margin-right:5px;}
+.treeview-node._minus .dir-icon {background-image:url(../image/folderopen-32.png)}
+
+.new-dir {padding-top:0; padding-bottom:0; height:22px; display:inline-block;}
+.glyphicon-ok {color:green;}
+.glyphicon-remove {color:red;}

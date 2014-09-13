@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Go快传</string>
+
+    <!-- home -->
+    <string name="hot_selling">热榜</string>
+    <string name="invite_friends">邀请好友</string>
+    <string name="connect_friends">连接好友</string>
+    <string name="cancel">取消</string>
+    <string name="send_with_number">发送(%1$d)</string>
+    <string name="disconnect">断开</string>
+    <string name="record">记录</string>
+    <string name="no_wifi_connected">没有连接到任何WIFI网络</string>
+    <string name="clear_all_selected_files">是否取消所选的%1$d个文件？</string>
+    <string name="ok">确定</string>
+    <string name="select_user_hint">请选择连接人</string>
+
+    <!-- fragemnt apps -->
+    <string name="app_size">10.7MB</string>
+
+    <!-- share activity -->
+    <string name="wifiap_share">热点</string>
+    <string name="bluetooth_share">蓝牙</string>
+    <string name="share_description_1">还有是安卓手机？近距离免流量传安装包</string>
+    <string name="share_description_2">分享下载链接</string>
+    <string name="free_share_step1">第一步:\n请好友打开手机WIFI,连接到无线网络%1$s</string>
+    <string name="free_share_step2">第二步:\n打开浏览器,输入\n%1$s或扫描二维码,按照页面提示下载\n码</string>
+
+    <!-- connect friends -->
+    <string name="connect_iphone">连接苹果</string>
+    <string name="friends_install">给好友安装</string>
+    <string name="create_connection">我要发送</string>
+    <string name="join_connection">我要接收</string>
+    <string name="connection_apple_step1">第一步:\n在苹果设备上进入\"设置-无线局域网\"选择网络</string>
+    <string name="wifiap">%1$s</string>
+    <string name="connection_apple_step2">第二步:\n在苹果设备上返回GO快传,点击\"我要连接\"</string>
+    <string name="create_connection_hint">其他手机加入我创建的连接</string>
+    <string name="join_connection_hint">我将加入其他手机创建的连接中</string>
+    
+    <!-- connect pc -->
+    <string name="connect_pc_stepone">第一步：在电脑浏览器中输入一以下地址：</string>
+    <string name="connect_pc_steptwo">第二步：在浏览器中输入上面的配对码</string>
+    <string name="connect_pc_startwifi">wifi启动中...</string>
+    <string name="connect_pc_fail">自动连接wifi失败，请点击按钮手动连接</string>
+    <string name="connect_pc_setting">点击手动设置wifi</string>
+    <string name="connect_pc_code">配对码</string>
+
+    <!-- create connection -->
+    <string name="creating_connection">正在创建连接</string>
+    <string name="create_success">连接创建成功</string>
+    <string name="create_fail">连接创建失败</string>
+    <string name="create_success_hint">请通知其他好友搜索加入</string>
+    <string name="wait_join_time_too_long">长时间无人连接，是否断开？</string>
+    <string name="continue_wait">继续等待</string>
+
+    <!-- choose music or vidio file -->
+    <string name="video">视频</string>
+    <string name="music">音乐</string>
+    <string name="file_length">长度:%1$s</string>
+    <string name="file_size">大小:%1$s</string>
+    <string name="all_choose">全选</string>
+
+    <!-- join connection -->
+    <string name="search_apList">搜索</string>
+    <string name="searching">正在搜索，请等待</string>
+    <string name="connecting_with_somebody">正在连接"%1$s"</string>
+    <string name="not_find_connection">周围未发现好友，点击重新查找</string>
+
+    <!-- conversation -->
+    <string name="accept">接受</string>
+    <string name="refuse">拒绝</string>
+    <string name="transfer_wait_send">等待发送</string>
+    <string name="transfer_wait_receive">等待接收</string>
+    <string name="transfer_sending">正在发送</string>
+    <string name="transfer_receiving">正在接收</string>
+    <string name="transfer_send_success">发送成功</string>
+    <string name="transfer_completed">已完成</string>
+    <string name="transfer_cancelled">已取消</string>
+    <string name="transfer_cancelled_by_peer">对方已取消</string>
+    <string name="transfer_refused">已拒绝</string>
+    <string name="transfer_receive_failed">接收失败</string>
+    <string name="transfer_send_failed">发送失败</string>
+    <string name="storage_too_small">存储空间不足</string>
+
+</resources>

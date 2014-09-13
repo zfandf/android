@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title langkey="title">Go快传网页版 V2.0</title>
+	<!--[if lte IE 7]>
+	<script type="text/javascript">
+		if ((navigator.userLanguage || navigator.language).toLowerCase() == 'zh-cn') {
+			alert("IE 版本锅底, 建议你升级 IE, 使用其它浏览器, 过着使用 FTP 进行文件管理");
+		} else {
+			alert("IE version is too low, it is recommended that you upgrade, IE use other browser or using FTP file management!");
+		}
+		window.location.href = "about:blank";
+	</script>
+	<![endif]-->
+	
+	<link rel="icon" href="assets/image/favicon.ico">
+	<link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="assets/css/bootstrap-theme.min.css">
+	<link rel="stylesheet" type="text/css" href="assets/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="assets/css/uploadify.css">
+	
+	<style>
+
+	/*common*/
+	.hide {display:none;}
+	.show {display:block;}
+	.clear {clear:both;}
+	.center {text-align:center;}
+	.textl {text-align:left;}
+	.textr {text-align:right;}
+	.chk-ico {background: transparent url(http://pan.baidu.com/yun-static/common/images/btn_icon.gif) -113px 0 no-repeat; width: 14px; height: 14px; display:inline-block;}
+	.selected .chk-ico {background-position: -113px -19px;}
+
+	.default-icon {background:url(assets/image/fileicon/default_type.png) no-repeat center; background-size:25px; display:inline-block; width:25px; height:25px;}
+	.dir-icon {background-image:url(assets/image/fileicon/folder_72.png);}
+
+	/* login box */
+	.modal[sign=login] {background:url("assets/image/bg-login.jpg")!important;}
+	.modal[sign=login] .modal-dialog {width:500px; margin-top:100px;}
+	.login-box {padding:20px 20px 20px 50px;}
+	.login-box .bg-danger {margin-top:10px; padding:2px 10px; border-radius:3px;}
+	.login-box .center {margin:10px 0;}
+	.login-icon {position:absolute; left:-70px; width:120px;}
+
+	.modal-open .modal {overflow-y: hidden;}
+
+	/*main*/
+	#main {height:100%;}
+	.main-l {width:100px; float:left; z-index: 999;
+		-moz-box-shadow: 1px 0px 3px #333333; 
+		-webkit-box-shadow:1px 0px 3px #333333; 
+		box-shadow: 1px 0px 4px #969696;}
+	.main-l-logo {padding: 10px;}
+	.main-l .phone {padding: 10px; text-align: center;}
+	.main-lmenu {padding: 10px;}
+	.main-lmenu.cover {opacity: 0.4; color: #ADADAD;}
+	.main-lmenu div, .main-lmenu span {text-align: center;}
+	.main-lmenu-click {border-right: 5px solid #5cb85c;}
+	.main-lmenu-default {border-right: 5px solid #FFFFFF;}
+	.main-lmenu-hover {cursor: pointer;}
+	.main-r {margin-left:100px; height:100%;}
+
+	.panel {margin-bottom:0px;}
+	.panel-body {padding:0;}
+
+	.view-type-box {margin-top:4px; margin-right:15px;}
+	.view-type-box span {font-size:18px;}
+
+	.brandcrumb-storage{display: inline-block; margin-right: 15px;}
+
+	/*modal*/
+	.J_ModalState {padding:10px;}
+	.breadcrumb {margin-bottom:0;}
+
+	#J_SelectAll .default-icon {width:35px; font-weight:normal; background:transparent;}
+
+	.files-list-footer {border-top:1px solid #ddd; background-color:#f5f5f5; padding:5px 15px;}
+	/* files box */
+	.files-box {width:100%; overflow-y:auto;}
+
+	.list-top {position:relative; padding:10px 0; border-bottom:1px solid #ddd;}
+	.list-top .select-all {display:inline-block; margin-left:12px; position:relative; padding-left:20px; padding-right:20px; cursor:pointer;}
+	.list-top .select-all .chk-ico {top:4px; left:0; position:absolute;}
+	.list-top .operate-btns {display:inline-block;}
+
+	.defaultstyle {position:relative;}
+	.defaultstyle .default-icon {background:no-repeat center; display:inline-block;}
+	.defaultstyle p {margin-bottom:0;}
+	.defaultstyle.file .file-name a {cursor:default; text-decoration:none;}
+
+	.list .defaultstyle {border-bottom:1px solid #ddd;}
+	.list .defaultstyle:hover {background-color:#f0f8fd;}
+	.list .defaultstyle.selected {background:rgb(202, 227, 255);}
+	.list .defaultstyle p {height:40px; line-height:40px; margin-bottom:0;}
+	.list .file-img {position:absolute; top:0; bottom:0; left:0; width:60px;}
+	.list .default-icon {position:absolute; top:0; left:0; right:0; bottom:0; background-size:25px; background-position:center right; width:60px; height:100%;}
+	.list .chk-box {position:absolute; top:0; bottom:0; left:0; right:25px;}
+	.list .chk-ico {position:absolute; top:14px; left:12px;}
+	.list .file-name {text-indent:60px; display:inline-block; width:60%;}
+	.list .file-name a {padding-left:10px;}
+	.list .file-time {width:30%; display:inline-block;}
+	.list .file-name .glyphicon {text-indent:0;}
+
+	.list .defaultstyle.dir .file-name a {cursor:pointer;}
+
+	.grid .defaultstyle {position:relative; width:142px; height:142px; float:left; margin:10px;}
+	.grid .file-img {width:94px; height:94px; position:relative; margin:auto;border:1px solid #fff; margin-top:20px;}
+	.grid .defaultstyle:hover .file-img,
+	.grid .defaultstyle.selected .file-img {border:1px solid #ddd;}
+	.grid .defaultstyle:hover .chk-ico,
+	.grid .defaultstyle.selected .chk-ico {display:inline-block;}
+	.grid .default-icon {width:94px; height:94px; position:relative;}
+	.grid .chk-box {position:absolute; top:-10px; left:-10px; width:30px; height:30px;}
+	.grid .chk-ico {position:absolute; top:10px; left:10px; display:none;}
+	.grid .file-name {text-align:center; margin-top:10px; overflow:hidden; word-break:break-all;}
+	.grid .file-time {display:none;}
+
+	.grid .defaultstyle.dir {cursor:pointer;}
+	
+	/* file icon */
+	.list .file-icon {background-image:url(assets/image/fileicon/default_type.png);}
+	.grid .file-icon {background-image:url(assets/image/fileicon/default_type.png);}
+	.list .dir-icon {background-image:url(assets/image/fileicon/folder_32.png);}
+	.grid .dir-icon {background-image:url(assets/image/fileicon/folder_72.png);}
+	.list .jpg-icon {background-image:url(assets/image/fileicon/jpg_32.png);}
+	.grid .jpg-icon {background-image:url(assets/image/fileicon/jpg_72.png);}
+	.list .apk-icon {background-image:url(assets/image/fileicon/apk_32.png);}
+	.grid .apk-icon {background-image:url(assets/image/fileicon/apk_72.png);}
+	.list .zip-icon {background-image:url(assets/image/fileicon/zip_32.png);}
+	.grid .zip-icon {background-image:url(assets/image/fileicon/zip_72.png);}
+	.list .doc-icon {background-image:url(assets/image/fileicon/doc_32.png);}
+	.grid .doc-icon {background-image:url(assets/image/fileicon/doc_72.png);}
+	.list .xls-icon {background-image:url(assets/image/fileicon/xls_32.png);}
+	.grid .xls-icon {background-image:url(assets/image/fileicon/xls_72.png);}
+	.list .ppt-icon {background-image:url(assets/image/fileicon/ppt_32.png);}
+	.grid .ppt-icon {background-image:url(assets/image/fileicon/ppt_72.png);}
+	.list .pdf-icon {background-image:url(assets/image/fileicon/pdf_32.png);}
+	.grid .pdf-icon {background-image:url(assets/image/fileicon/pdf_72.png);}
+	.list .avi-icon {background-image:url(assets/image/fileicon/avi_32.png);}
+	.grid .avi-icon {background-image:url(assets/image/fileicon/avi_72.png);}
+	.list .midi-icon {background-image:url(assets/image/fileicon/midi_32.png);}
+	.grid .midi-icon {background-image:url(assets/image/fileicon/midi_72.png);}
+	.list .text-icon {background-image:url(assets/image/fileicon/text_32.png);}
+	.grid .text-icon {background-image:url(assets/image/fileicon/text_72.png);}
+	.list .code-icon {background-image:url(assets/image/fileicon/code_32.png);}
+	.grid .code-icon {background-image:url(assets/image/fileicon/code_72.png);}
+
+	/*operate*/
+	.new-dir {width:100px;}
+	
+	/* dir tree*/
+	.dirtree {border:1px solid #ddd; height:300px; overflow-y:auto;}
+	.dirtree,
+	.dirtree ul {list-style:none; padding:0; margin:0;}
+	
+	.treeview-node {padding:5px 0 5px 15px; cursor:default;}
+	.treeview-node:hover {background-color:#f0f8fd;}
+	.treeview-node.selected {background:rgb(202, 227, 255);}
+	.treeview-node p {padding-left:15px; position:relative; margin:0;}
+	.treeview-node a {text-decoration: none; cursor:default;}
+	.treeview-node a .glyphicon {cursor:pointer;}
+	.treeview-node .plus {position: absolute; left:0; top:3px;}
+	.treenode-empty .plus {display:none;}
+	
+	.treeview-node+ul {display:none;}
+	.treeview-node._minus+ul {display:block;}
+	
+	.treeview-node .dir-icon {background-image:url(assets/image/fileicon/folder_32.png); float:left; height:20px; margin-right:5px;}
+	.treeview-node._minus .dir-icon {background-image:url(assets/image/fileicon/folderopen_32.png)}
+	
+	.loading-dir {position: absolute; left: 0;}
+	.new-dir {padding-top:0; padding-bottom:0; height:22px; display:inline-block;}
+	.glyphicon-ok {color:green;}
+	.glyphicon-remove {color:red;}
+
+	#J_UploadBox {display:block; float:left; margin-right:5px; margin-top:2px;}
+    .upload-box {position:absolute; top:10px; left:200px; display:inline; z-index:10000;}
+
+	</style>
+	<!--[if lte IE 8]>
+	<script type="text/javascript" src="assets/js/html5.js"></script>s
+	<style>
+	.modal-dialog {width:600px; margin:30px auto;}
+	</style>
+	<![endif]-->
+</head>
+<body>
+	<div class="hide" id="main">
+		<div class="main-l">
+			<div class="main-l-logo"><img src="assets/image/icon.png" alt="logo" width="80"></div>
+			<div class="phone" id="J_MyDevice">My Phone</div>
+		</div>
+		<div class="main-r">
+			<div class="panel panel-default">
+				<!-- operate btn <upload files, create new dir> -->
+			  	<div class="panel-heading">
+			  		<div id="J_UploadBox">
+						<button class="btn btn-success" id="J_Upload"><span class="glyphicon glyphicon-open"></span>&nbsp;<span langkey="uploadbtn"></span></button>
+					</div>
+			  		<button class="btn btn-default J_CreateNew"><span class="glyphicon glyphicon-plus"></span>&nbsp;<span langkey="createbtn"></span></button>
+			  		<button class="btn btn-default J_Refresh"><span class="glyphicon glyphicon-refresh"></span><span langkey="refreshbtn"></span></button>
+			  	</div>
+			  	<div class="panel-body">
+			  		<!-- change view type <list, grid> -->
+					<div class="pull-right view-type-box">
+						<button type="button" class="btn btn-default J_ViewType" view-type="grid">
+						  	<span class="glyphicon glyphicon-th"></span>
+						</button>
+						<button type="button" class="btn btn-default J_ViewType disabled" view-type="list">
+						  	<span class="glyphicon glyphicon-th-list"></span>
+						</button>
+					</div>
+					<div id="J_TopBtns">
+						<!-- breadcrumb-->
+						<ol class="breadcrumb">
+							<div class="brandcrumb-storage"><select class="form-control J_Storage input-sm"></select></div>
+						</ol>
+			    		<!-- files operate button <copy, move, delete, download> -->
+			    		<div class="list-top">
+							<div id="J_SelectAll" class="select-all">
+								<span class="chk-ico"></span>
+								<span langkey="selectall">全选</span>
+							</div>
+							<div class="J_OperateBtns operate-btns">
+								<button class="btn btn-default J_CopyMove" action="copy" langkey="copybtn"></button>
+								<button class="btn btn-default J_CopyMove" action="move" langkey="movebtn"></button>
+								<button class="btn btn-default J_Delete"><span class="glyphicon glyphicon-trash"></span><span langkey="deletebtn"></span></button>
+								<button class="btn btn-success J_Download"><span class="glyphicon glyphicon-save"></span><span langkey="downloadbtn"></span></button>
+							</div>
+						</div>
+					</div>
+			    	<!-- files list -->
+			    	<div class="files-box list" id="J_FilesList"></div>
+			    	<div class="files-list-footer textr" id="J_Footer">
+			    		Version:
+			    		<span id="J_Version"></span>&nbsp;&nbsp;&nbsp;
+			    		<span id="J_StorageStatus" class="pull-left"></span>
+			    	</div>
+			  	</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- modal -->
+	<div class="modal" id="J_ModalDialog">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close J_ModalClose" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+	        <h4 class="modal-title" id="J_ModalTitle"></h4>
+	      </div>
+	      <div class="modal-body" id="J_ModalBody"></div>
+	      <div class="modal-footer">
+	      	<p class="hide J_ModalState"></p>
+	        <button type="button" class="btn btn-default J_ModalClose" data-dismiss="modal" langkey="cancel"></button>
+	        <button type="button" class="btn btn-primary" id="J_ModalSubmit" langkey="ok"></button>
+	      </div>
+	    </div><!-- /.modal-content -->
+	  </div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+
+	<!-- loading modal -->
+	<div class="modal" id="J_LoadingModal">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-body J_ModalBody">
+	        <div id="site-loading"></div>
+	        <img src="assets/image/loading.gif"/>
+	      </div>
+	    </div><!-- /.modal-content -->
+	  </div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+
+	<!-- error modal -->
+	<div class="modal" id="J_ErrorModal">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+    	  	<div class="modal-header">
+	        	<button type="button" class="close J_ModalClose" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+	        	<h4 class="modal-title" id="J_ModalTitle">warning!!!</h4>
+	      	</div>
+	      	<div class="modal-body J_ModalBody"></div>
+	      	<div class="modal-footer hide">
+	      		<button class="btn btn-warning btn-block J_ErrorModal_Close" langkey="iknow"></button>
+	      		<button type="button" class="btn btn-default J_ModalClose hide" data-dismiss="modal" langkey="cancel"></button>
+	        	<button type="button" class="btn btn-primary J_ModalSubmit hide" langkey="ok"></button>
+	      	</div>
+	    </div><!-- /.modal-content -->
+	  </div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+
+	<form class="close" method="post" action="/" name="J_NewForm" id="J_NewForm"></form>
+	<img id="loading-dir" class="hide" src="assets/image/loading-dir.gif" />
+
+	<!-- login box -->
+	<script type="text/template" class="J_Tmpl" id="J_LoginTmpl" name="login">
+		<div class="login-box">
+			<img class="login-icon" src="assets/image/icon.png" alt="logo" width="80">
+			<form class="center" role="form">
+			  	<div class="form-group textl">
+	    			<label for="verificationcode" class="control-label textl" langkey="verification">verify code:</label>
+    			</div>
+			  	<div class="form-group">
+					<input type="text" class="form-control" id="verificationcode">
+	  				<p class="bg-danger hide textl" id="J_LoginInfo" role="alert"></p>
+			  	</div>
+			  	<div class="form-group">
+    				<button type="submit" class="form-control btn btn-success" id="J_LoginSubmit" langkey="verificationbtn">Connect to phone</button>
+			  	</div>
+			</form>
+			<div class="clear"></div>
+		</div>
+	</script>
+
+	<!-- dir tree -->
+	<script type="text/template" id="J_TreeTmpl" name="upload">
+		<ul id="J_DirTree"></ul>
+	</script>
+
+	<!-- dir tree dir-->
+	<script type="text/template" id="J_TreeNodeTmpl">
+		<li>
+			<div class="treeview-node {cls}" style="padding-left:{paddingLeft}px" idx="{idx}" path="{path}">
+				<p>
+					<span class="plus fa fa-plus-square-o"></span>
+					<span class="loading-dir"></span>
+					<span class="dir-icon default-icon"></span>
+					<span class="file-name"><a>{name}</a></span>
+				</p>
+			</div>
+		</li>
+	</script>
+	<!-- upload files -->
+	<div id="J_UploadBody" class="upload-btns hide">
+		<button class="btn btn-default hide" id="J_UploadCancelAll">全部取消</button>
+		<button class="btn btn-default hide" id="J_UploadComplete">完成</button>
+	</div>
+	<!-- new dir -->
+	<script type="text/template" id="J_NewDirTmpl">
+		<span id="J_Creating">
+			<input form="J_NewForm" class="new-dir form-control" type="text" id="J_NewDirName" value=""/>
+			<span class="glyphicon glyphicon-ok" id="J_CreateOk"></span>
+			<span class="glyphicon glyphicon-remove" id="J_CreateCancel"></span>
+		</span>
+	</script>
+
+	<!-- view file-->
+	<script type="text/template" id="J_FileTmpl">
+		<div class="defaultstyle {cls} f-t1" path="{path}">
+			<div class="file-img">
+				<p>
+					<span class="default-icon {type}-icon"><span class="chk-box"><span class="chk-ico"></span></span></span>
+				</p>
+			</div>
+			<div class="file-name"><p><a path="{path}" class="{type}-link">{name}</a></p></div>
+			<div class="file-time"><p>{time}</p></div>
+		</div>
+	</script>
+
+	<!-- left menu -->
+	<script type="text/template" id="J_TmplMenu">
+		<div class="main-lmenu main-lmenu-default {cover}" action="{action}" {tooltip}>
+			<div><span class="fa fa-folder-o fa-4x"></span></div>
+			<div>{name}</div>
+		</div>
+	</script>
+	<script type="text/javascript" src="assets/js/jquery-1.7.2.js"></script>
+	<script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="assets/js/jquery.uploadify.min.js"></script>
+	<script type="text/javascript" src="assets/js/language.js"></script>
+	<script type="text/javascript" src="assets/js/modal.js"></script>
+	<script type="text/javascript" src="assets/js/common.js"></script>
+	<script type="text/javascript" src="assets/js/dirtree.js"></script>
+	<script type="text/javascript" src="assets/js/go.js"></script>
+	
+	<script type="text/javascript">
+	function CloseWebPage() {
+		if (navigator.userAgent.indexOf("MSIE") > 0) {
+			if (navigator.userAgent.indexOf("MSIE 6.0") > 0) {
+				window.opener = null;
+				window.close;
+			} else {
+				window.open("", "_top");
+				window.top.close();
+			}
+		} else if (navigator.userAgent.indexOf("FireFox") > 0) {
+			window.location.href = "about:blank;";// firefox 默认状态非window.open 的页面window.close 无效
+		}
+	}
+	window.onload = function() {
+		try {
+			$('body');
+		} catch (e) {
+			if (confirm("您的服务启动失败或者您的 Android 版本太低,建议您重启服务或者升级 Android!")) {
+				closeWebPage();
+			}
+		}
+	}
+	</script>
+
+</body>
+</html>

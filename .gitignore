@@ -1,0 +1,7 @@
+apk/
+bin/
+gen/
+*.DS_Store
+*.classpath
+*.lint.xml
+*/local.properties
