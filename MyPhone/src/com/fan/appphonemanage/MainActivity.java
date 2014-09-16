@@ -49,6 +49,7 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
 		int id = v.getId();
+		Log.i("<<<click>>>>", "" + id);
 		Intent intent = new Intent();
 		switch (id) {
 			case R.id.id_main_btn_applist:

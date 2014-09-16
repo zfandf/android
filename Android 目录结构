@@ -1,0 +1,13 @@
+Android 目录
+src 存放资源文件
+gen 自动生成并存放资源文件的唯一ID
+Android4.2.2 该项目支持的jar包以及打包时所需要的 META-INF 目录
+assets 存放不需要R文件管理的资源文件， 网页、js、文档， 
+    当使用的时候， 需要使用几个方法：getResources(), getAssets(), open("doc.txt")， 获得文件流
+bin 资源包， 
+res 存放图片、声音、布局、系统的一些格式文件等
+    drawable 存放图片资源，不同分辨率分为不同的文件夹
+    layout 存放布局文件
+    value 资源描述性文件， 字符串、样式、颜色等
+
+AndroidManifest.xml 系统控制文件

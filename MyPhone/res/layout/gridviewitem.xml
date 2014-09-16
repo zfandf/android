@@ -10,8 +10,7 @@
 	    android:id="@+id/image"
 	    android:layout_width="match_parent"
 	    android:layout_height="wrap_content"
-	    android:ellipsize="marquee"
-	    android:src="@drawable/ic_launcher" />
+	    android:ellipsize="marquee" />
 
 	<TextView
 	    android:id="@+id/pkgname"
@@ -20,7 +19,7 @@
 	    android:gravity="center|top"
 	    android:lines="2"
 	    android:paddingTop="10dp"
-	    android:text="这个应用的名字比较长" />
+	    android:text="" />
 
 </LinearLayout>
 

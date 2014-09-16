@@ -1,5 +1,8 @@
 package com.fan.myadaptertest;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
@@ -13,9 +16,14 @@ public class MainActivity extends ActionBarActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		
-		String[] as = {"aaa", "bbb", "ccc", "fff"};
+		ArrayList<HashMap<String, Object>> list = new ArrayList<HashMap<String, Object>>();
+		
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("id_grid1", "hello");
+		map.put("id_grid2", "world");
+		list.add(map);
 		GridView mygrid = (GridView)findViewById(R.id.mygridview);
-		AdapterTest adapter = new AdapterTest(this, R.layout.samplegrid, R.id.id_grid, as);
+		AdapterTest adapter = new AdapterTest(this, R.layout.samplegrid, new String[]{"id_grid1", "id_grid2"}, new int[]{R.id.id_grid1, R.id.id_grid2}, list);
 		mygrid.setAdapter(adapter);
 	}
 

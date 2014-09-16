@@ -54,7 +54,7 @@ import android.widget.TextView;
  * </ul>
  * If no appropriate binding can be found, an {@link IllegalStateException} is thrown.
  */
-public class AppListAdapter extends BaseAdapter implements Filterable {
+public class CopyOfAppListAdapter extends BaseAdapter implements Filterable {
     private int[] mTo;
     private String[] mFrom;
     private ViewBinder mViewBinder;
@@ -83,7 +83,7 @@ public class AppListAdapter extends BaseAdapter implements Filterable {
      *        TextViews. The first N views in this list are given the values of the first N columns
      *        in the from parameter.
      */
-    public AppListAdapter(Context context, List<? extends Map<String, ?>> data,
+    public CopyOfAppListAdapter(Context context, List<? extends Map<String, ?>> data,
             int resource, String[] from, int[] to) {
         mData = data;
         mResource = mDropDownResource = resource;
@@ -232,20 +232,6 @@ public class AppListAdapter extends BaseAdapter implements Filterable {
         mViewBinder = viewBinder;
     }
     
-
-    /**
-     * Called by bindView() to set the image for an ImageView but only if
-     * there is no existing ViewBinder or if the existing ViewBinder cannot
-     * handle binding to an ImageView.
-     *
-     * This method is called instead of {@link #setViewImage(ImageView, String), @link #setViewImage(ImageView, int)}
-     * if the supplied data is Drawable
-     *
-     * @param v ImageView to receive an image
-     * @param value the value retrieved from the data set
-     *
-     * @see #setViewImage(ImageView, String)
-     */
     public void setViewImage(ImageView v, Drawable drawable) {
     	v.setImageDrawable(drawable);
     }
@@ -319,9 +305,9 @@ public class AppListAdapter extends BaseAdapter implements Filterable {
      * directly supported by SimpleAdapter or to change the way binding
      * occurs for views supported by SimpleAdapter.
      *
-     * @see AppListAdapter#setViewImage(ImageView, int)
-     * @see AppListAdapter#setViewImage(ImageView, String)
-     * @see AppListAdapter#setViewText(TextView, String)
+     * @see CopyOfAppListAdapter#setViewImage(ImageView, int)
+     * @see CopyOfAppListAdapter#setViewImage(ImageView, String)
+     * @see CopyOfAppListAdapter#setViewText(TextView, String)
      */
     public static interface ViewBinder {
         /**

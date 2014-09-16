@@ -7,9 +7,10 @@ import java.util.List;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBarActivity;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -19,38 +20,61 @@ import android.widget.GridView;
 
 public class AppListActivity extends ActionBarActivity {
 
-	private static PackageManager packageManager;
+	private static PackageManager packageManager = null;
 	
+	private static GridView mGridView;
+	
+	private static AppListAdapter applistadapter; 
+	
+	// 应用列表
 	private ArrayList<HashMap<String, Object>> applist = new ArrayList<HashMap<String, Object>>();
+	
+	private final static int SUCCESS = 0;
+	
+	private static Handler handler = new Handler() {
+		public void handleMessage(android.os.Message msg) {
+			if (msg.what == SUCCESS) {
+				mGridView.setAdapter(applistadapter);
+			}
+		};
+	};
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.fragment_app_list);
-		getAppList();
+		mGridView = (GridView)findViewById(R.id.gridView1);
+		setPackageView();
 	}
 	
-	public void getAppList() {
-		packageManager = getPackageManager();
-		List<PackageInfo> allPackages = packageManager.getInstalledPackages(PackageManager.GET_UNINSTALLED_PACKAGES);
-		for (PackageInfo pkginfo: allPackages) {
-//			Log.i("<<<package name>>>", pkginfo.packageName);
-			String pkgname = getApplicationName(pkginfo);
-
-			Log.i("<<<package name>>>", pkginfo.applicationInfo.className + ">>>" + pkgname);
-			HashMap<String, Object> map = new HashMap<String, Object>();
-			map.put("image", packageManager.getApplicationIcon(pkginfo.applicationInfo));
-			map.put("pkgname", pkgname);
-			applist.add(map);
-		}
-		GridView mGridView = (GridView)findViewById(R.id.gridView1);
-
-		  
-		// 使用HashMap将图片添加到一个数组中，注意一定要是HashMap<String,Object>类型的，因为装到map中的图片要是资源ID，而不是图片本身
-		// 如果是用findViewById(R.drawable.image)这样把真正的图片取出来了，放到map中是无法正常显示的
+	private void setPackageView() {
+		new Thread(new Runnable() {
+			
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				if (packageManager == null) {
+					packageManager = getPackageManager();
+				}
+				List<PackageInfo> allpkginfos = packageManager.getInstalledPackages(PackageManager.GET_UNINSTALLED_PACKAGES);
+				for (PackageInfo pkginfo: allpkginfos) {
+					String pkgname = getApplicationName(pkginfo);
+					HashMap<String, Object> map = new HashMap<String, Object>();
+					map.put("image", packageManager.getApplicationIcon(pkginfo.applicationInfo));
+					map.put("pkgname", pkgname);
+					applist.add(map);
+				}
+				renderView();
+			}
+		}).start();
+	}
+	
+	private void renderView() {
+		applistadapter = new AppListAdapter(this, applist, R.layout.gridviewitem, new String[] {"pkgname", "image"}, new int[]{R.id.pkgname, R.id.image});
 		
-		AppListAdapter simpleAdapter = new AppListAdapter(this, applist, R.layout.gridviewitem, new String[] {"pkgname", "image"}, new int[]{R.id.pkgname, R.id.image});
-		mGridView.setAdapter(simpleAdapter);
+		Message msg = new Message();
+		msg.what = SUCCESS;
+		handler.sendMessage(msg);
 	}
 	
 	/*

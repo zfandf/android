@@ -21,6 +21,14 @@
     <style name="MainActivityStyle" parent="AppBaseTheme">
         <item name="android:textColor">@color/c2</item>
         <item name="android:background">@color/c1</item>
+        <item name="android:text"></item>
+    </style>
+    
+    <!-- file list top -->
+    <style name="FileListHeader" parent="AppBaseTheme">
+        <item name="android:textColor">@color/c1</item>
+        <item name="android:scrollbars">none</item>
+        <item name="android:lines">1</item>
     </style>
 
 </resources>
