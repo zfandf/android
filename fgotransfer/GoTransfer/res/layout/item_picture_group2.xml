@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="47dp"
+    android:background="@color/c6" >
+
+    <ImageView
+        android:id="@+id/left_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="16dp"
+        android:contentDescription="@null"
+        android:src="@drawable/ic_minus" />
+
+    <TextView
+        android:id="@+id/tv_check_all"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        android:drawableLeft="@drawable/bg_selected"
+        android:drawablePadding="6dp"
+        android:gravity="center"
+        android:paddingRight="16dp"
+        android:text="@string/all_choose"
+        android:textColor="@color/c2" />
+
+    <TextView
+        android:id="@+id/tv_group_name2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="6dp"
+        android:layout_toLeftOf="@+id/tv_check_all"
+        android:layout_toRightOf="@+id/left_icon"
+        android:layout_above="@+id/line"
+        android:gravity="left|center_vertical"
+        android:singleLine="true"
+        android:textColor="@color/c2" />
+
+ 	<View 
+ 	    android:id="@+id/line"
+ 	    android:layout_width="match_parent"
+ 	    android:layout_height="1dp"
+ 	    android:background="@color/c4"
+ 	    android:layout_alignParentBottom="true" />
+
+</RelativeLayout>

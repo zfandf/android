@@ -1,0 +1,1 @@
+javadoc -sourcepath src @docs.txt -d doc -encoding UTF-8 -charset UTF-8

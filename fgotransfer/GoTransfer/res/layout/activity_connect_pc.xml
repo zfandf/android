@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <TextView
+        android:id="@+id/cp_background"
+        android:layout_width="match_parent"
+        android:layout_height="170dp"
+        android:background="@drawable/img_link_pc" >
+    </TextView>
+
+    <Button
+        android:id="@+id/cp_setting"
+        android:layout_width="234dp"
+        android:layout_height="50dp"
+        android:layout_below="@id/cp_background"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/bg_about_selector"
+        android:text="@string/link_pc_setting"
+        android:textColor="@color/c7"
+        android:visibility="invisible" />
+
+    <LinearLayout
+        android:id="@+id/cp_connecting"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/cp_background"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:orientation="vertical" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/connect_pc_stepone"
+                android:textColor="@color/c1"
+                android:textSize="@dimen/t3" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/connect_pc_stepone_hint"
+                android:textColor="@color/c1"
+                android:textSize="@dimen/t4" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/connect_pc_stepone_netname"
+                    android:textColor="@color/c1"
+                    android:textSize="@dimen/t4" />
+                <TextView
+                    android:id="@+id/cp_current_net"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/c3"
+                    android:textSize="@dimen/t4" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:orientation="vertical" >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/connect_pc_steptwo"
+                android:textColor="@color/c1"
+                android:textSize="@dimen/t3" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/connect_pc_steptwo_hint"
+                android:textColor="@color/c1"
+                android:textSize="@dimen/t4" />
+            <TextView
+                android:id="@+id/cp_current_ip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/c3"
+                android:textSize="@dimen/t4" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:orientation="vertical" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/connect_pc_stepthree"
+                android:textColor="@color/c1"
+                android:textSize="@dimen/t3" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/connect_pc_code"
+                    android:textColor="@color/c3"
+                    android:textSize="@dimen/t4" />
+                <TextView
+                    android:id="@+id/cp_current_code"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/c3"
+                    android:textSize="@dimen/t4" />
+            </LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/connect_pc_stepthree_hint"
+                android:textColor="@color/c1"
+                android:textSize="@dimen/t4" />
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>

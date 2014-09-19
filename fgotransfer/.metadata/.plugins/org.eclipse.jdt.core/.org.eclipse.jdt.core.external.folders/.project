@@ -14,5 +14,10 @@
 			<type>2</type>
 			<location>D:/Program Files/adt/sdk/sources/android-19</location>
 		</link>
+		<link>
+			<name>.link1</name>
+			<type>2</type>
+			<location>D:/sdk/src</location>
+		</link>
 	</linkedResources>
 </projectDescription>

@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">GO快传</string>
+
+    <!-- home -->
+    <string name="hot_selling">热榜</string>
+    <string name="invite_friends">邀请好友</string>
+    <string name="connect_friends">连接好友</string>
+    <string name="cancel">取消</string>
+    <string name="send_with_number">发送(%1$d)</string>
+    <string name="disconnect">断开</string>
+    <string name="record">记录</string>
+    <string name="no_wifi_connected">没有连接到任何WIFI网络</string>
+    <string name="clear_all_selected_files">是否取消所选的%1$d个文件？</string>
+    <string name="ok">确定</string>
+    <string name="select_user_hint">请选择连接人</string>
+    <string name="quit_app_or_not">是否退出应用?</string>
+    <string name="quit">退出</string>
+    <string name="change_name">修改名字:</string>
+    <string name="transfer_status_unknow">未知</string>
+    <string name="username_limit_hint">最多支持5个中文字符和15个英文字符</string>
+    <string name="wait_friend_join">请等待好友加入</string>
+    <string name="wifi_disconnected">连接已断开</string>
+	<string name="internal_storage">手机存储</string>
+	<string name="wifi_connect_failed">连接已断开</string>
+    
+    <!-- share activity -->
+    <string name="wifiap_share">热点</string>
+    <string name="bluetooth_share">蓝牙</string>
+    <string name="share_description_1">好友是安卓手机？近距离免流量传安装包</string>
+    <string name="share_description_2">分享下载链接</string>
+    <string name="free_share_step1">第一步:\n请好友打开手机WIFI,连接到无线网络%1$s</string>
+    <string name="free_share_step2">第二步:\n打开浏览器,输入\n%1$s或扫描二维码,按照页面提示下载\n码</string>
+
+    <!-- connect friends -->
+    <string name="connect_iphone">连接苹果</string>
+    <string name="friends_install">给好友安装</string>
+    <string name="create_connection">我要发送</string>
+    <string name="create_connection_btn_send">发送</string>
+    <string name="join_connection">我要接收</string>
+    <string name="join_time_out">连接超时</string>
+    <string name="connection_apple_step1">第一步:\n在苹果设备上进入\"设置-无线局域网\"选择网络</string>
+    <string name="wifiap">%1$s</string>
+    <string name="connection_apple_step2">第二步:\n在苹果设备上返回GO快传,点击\"我要连接\"</string>
+    <string name="create_connection_hint">其他手机加入我创建的连接</string>
+    <string name="join_connection_hint">我将加入其他手机创建的连接中</string>
+    
+    <!-- connect pc -->
+    <string name="connect_pc">连接电脑</string>
+    <string name="connect_pc_stepone">第一步</string>
+    <string name="connect_pc_stepone_hint">将电脑和手机连接到同一局域网</string>
+    <string name="connect_pc_stepone_netname">手机当前连接网络:</string>
+    <string name="connect_pc_steptwo">第二步</string>
+    <string name="connect_pc_steptwo_hint">在电脑浏览器中输入下面的地址</string>
+    <string name="connect_pc_stepthree">第三步</string>
+    <string name="connect_pc_stepthree_hint">完成连接电脑</string>
+    <string name="connect_pc_code">输入验证码:</string>
+    <string name="link_pc_setting">Wi-Fi设置</string>
+
+    <!-- create connection -->
+    <string name="creating_connection">我要发送</string>
+    <string name="creating_iscreating">正在创建</string>
+    <string name="create_success">创建成功</string>
+    <string name="create_fail">创建失败</string>
+    <string name="create_success_hint">请通知其他好友搜索%1$s加入</string>
+    <string name="wait_join_time_too_long">长时间无人连接，是否断开？</string>
+    <string name="continue_wait">继续等待</string>
+    <string name="choose_reciver">点击头像选中</string>
+
+    <!-- choose music or vidio file -->
+    <string name="video">视频</string><string name="music">音乐</string>
+
+    <string name="file_length">时长: %1$s</string>
+    <string name="file_size">大小: %1$s</string>
+    <string name="file_artist">歌手: %1$s</string>
+    <string name="all_choose">全选</string>
+
+    <!-- join connection -->
+    <string name="search_apList">搜索</string>
+    <string name="searching">正在搜索好友磁场&#8230;</string>
+    <string name="connecting_with_somebody">正在连接"%1$s"</string>
+    <string name="not_find_connection">周围未发现好友，点击重新查找</string>
+
+    <!-- conversation -->
+    <string name="transfer_history">历史记录</string>
+    <string name="accept">接收</string>
+    <string name="refuse">拒绝</string>
+    <string name="transfer_wait_send">等待发送</string>
+    <string name="transfer_wait_receive">等待接收</string>
+    <string name="transfer_sending">正在发送</string>
+    <string name="transfer_receiving">正在接收</string>
+    <string name="transfer_send_success">发送成功</string>
+    <string name="transfer_completed">已完成</string>
+    <string name="transfer_cancelled">已取消</string>
+    <string name="transfer_cancelled_by_peer">对方已取消</string>
+    <string name="transfer_refused">拒绝接收</string>
+    <string name="transfer_receive_failed">接收失败</string>
+    <string name="transfer_send_failed">发送失败</string>
+    <string name="storage_too_small">存储空间不足</string>
+    <string name="transfer_send_to">发给%1$s</string>
+    <string name="transfer_receive_from">来自%1$s</string>
+
+    <!-- setting -->
+    <string name="setting">设置</string>
+    <string name="share_3G">共享您的流量</string>
+    <string name="show_hidden_files">显示隐藏文件</string>
+    <string name="hidden_files_explain">是否显示隐藏文件</string>
+    <string name="share_3G_explain">允许加入您热点的朋友使用您的流量</string>
+    <string name="show_empty"></string>
+
+    <!-- about Go Transfer -->
+    <string name="checkversion">检查新版</string>
+    <string name="rate">给GO快传打分</string>
+    <string name="company_CN">北京觅我信息技术有限公司</string>
+    <string name="company_EN">Copyright: 2010&#8211;2014 Beijing Mobilewoo Info Tech, CO, LTD\nAll Rights Reserved</string>
+    <string name="version">GO快传 v%1$s</string>
+
+    <!-- dialog file detail -->
+    <string name="name">名称</string>
+    <string name="time">时间</string>
+    <string name="location">位置</string>
+    <string name="size">大小</string>
+    <string name="file_not_exist">文件不存在</string>
+    <string name="file_deleted">文件已删除</string>
+    <string name="use_file_brower">请使用文件浏览器打开</string>
+    <string name="computing">正在计算&#8230;</string>
+
+    <!-- bluetooth share -->
+    <string name="share_go_transfer">分享GO快传</string>
+    <string name="share_by_others">未发现蓝牙设备，请选择其他方式进行分享</string>
+
+    <!-- other share -->
+    <string name="share_wifiap">热点</string>
+    <string name="share_other">其它分享</string>
+    <string name="share_wx_friend">微信好友</string>
+    <string name="share_friend_circle">朋友圈</string>
+    <string name="share_qr_code">二维码</string>
+    <string name="share_sms">短信</string>
+    <string name="share_mail">邮件</string>
+    <string name="share_weibo">微博</string>
+    <string name="share_qr_code_desc">二维码图片</string>
+    <string name="share_no_support">分享失败</string>
+    <string name="share_sms_content">Hi，我在用GO快传，一款零流量文件传输工具，无需WIFI网络，速度够快！一起来试试吧： http://www.gotransf.com </string>
+    <string name="share_wx_link">http://www.m15.cn</string>
+    <string name="share_wx_text">GO快传</string>
+    <string name="share_wx_desc">Hi，我在用GO快传，一款零流量文件传输工具，无需WIFI网络，速度够快！一起来试试吧： http://www.gotransf.com </string>
+    <string name="share_mail_subject">GO快传</string>
+    <string name="share_mail_content">Hi，我在用GO快传，一款零流量文件传输工具，无需WIFI网络，速度够快！一起来试试吧： http://www.gotransf.com </string>
+    <string name="share_qr_code_title">二维码分享</string>
+    <string name="share_weibo_content">Hi，我在用GO快传，一款零流量文件传输工具，无需WIFI网络，速度够快！一起来试试吧： http://www.gotransf.com </string>
+    <string name="wx_app_not_installed">你没有安装微信</string>
+    <string name="wx_version_too_low">你的微信版本不支持分享到朋友圈</string>
+    <string name="xinlang_version_too_low">你的新浪微博版本不支持分享</string>
+    <string name="xinlang_app_not_installed">你没有安装新浪微博</string>
+
+    <!-- others -->
+    <string name="confirm">确定</string>
+    <string name="connectting">正在连接</string>
+    <string name="not_enough_space_content">磁盘空间不足，文件传输取消。</string>
+    <string name="transfer_cancel_content">确定取消发送这些文件吗？</string>
+    <string name="transfer_continue">继续发送</string>
+    <string name="network_disconnected_content">网络连接已断开！</string>
+    <string name="disconnect_all_transfers_content">返回将断开所有文件传送，是否断开？</string>
+    <string name="close_connection_content">返回首页将断开现有连接，如果是您创建的热点，其他连接到您热点的好友将全部断开，是否断开？</string>
+    <string name="i_know">我知道了</string>
+    <string name="sdcard_disable">SDCard不可用!</string>
+    <string name="waiting_join">创建成功通知其他好友加入&#8230;</string>
+    <string name="create_wifi_failed">创建失败&#8230;</string>
+    <string name="creating_wifi">正在创建</string>
+    <string name="about">关于</string>
+    <!-- umeng -->
+	<string name="contact_information">联系方式</string>
+	<string name="umeng_fb_title">反馈</string>
+	<string name="umeng_fb_reply_content_default">您遇到什么问题了？</string>
+	<string name="umeng_fb_send">发送</string>
+</resources>

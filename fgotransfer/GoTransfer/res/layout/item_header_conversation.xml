@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_conversation_header"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="4dp"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/tv_date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center_horizontal"
+        android:textColor="@color/c2"
+        android:textSize="@dimen/t4"
+        android:visibility="gone" />
+
+    <LinearLayout
+        android:id="@+id/ll_conversation_header_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp" >
+
+        <TextView
+            android:id="@+id/tv_friend"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableLeft="@drawable/bg_head_history"
+            android:drawablePadding="10dp"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:paddingBottom="14dp"
+            android:paddingTop="14dp"
+            android:singleLine="true"
+            android:textColor="@color/c1"
+            android:textSize="@dimen/t3" />
+
+        <TextView
+            android:id="@+id/tv_refuse"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginRight="8dp"
+            android:drawableLeft="@drawable/ic_refuse"
+            android:drawablePadding="4dp"
+            android:gravity="center_vertical"
+            android:paddingBottom="14dp"
+            android:paddingLeft="2dp"
+            android:paddingTop="14dp"
+            android:text="@string/refuse"
+            android:textColor="@color/c2"
+            android:textSize="@dimen/t3" />
+
+        <TextView
+            android:id="@+id/tv_accept"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:drawableLeft="@drawable/ic_ok"
+            android:drawablePadding="4dp"
+            android:gravity="center_vertical"
+            android:paddingBottom="14dp"
+            android:paddingRight="2dp"
+            android:paddingTop="14dp"
+            android:text="@string/accept"
+            android:textColor="@color/c2"
+            android:textSize="@dimen/t3" />
+
+        <TextView
+            android:id="@+id/tv_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:drawableLeft="@drawable/ic_cancel"
+            android:drawablePadding="4dp"
+            android:gravity="center_vertical"
+            android:paddingBottom="14dp"
+            android:paddingTop="14dp"
+            android:text="@string/cancel"
+            android:textColor="@color/c2"
+            android:textSize="@dimen/t3"
+            android:visibility="gone" />
+        
+    </LinearLayout>
+    
+    <!-- 设置成背景的话在三星i509上不能显示这条线 -->
+    <View 
+		android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/c3" />
+
+</LinearLayout>

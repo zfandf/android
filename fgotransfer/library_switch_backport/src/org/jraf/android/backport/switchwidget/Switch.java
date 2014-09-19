@@ -40,6 +40,7 @@ import android.text.StaticLayout;
 import android.text.TextPaint;
 import android.text.TextUtils;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.VelocityTracker;
@@ -309,12 +310,16 @@ public class Switch extends CompoundButton {
         final int maxTextWidth = Math.max(mOnLayout.getWidth(), mOffLayout.getWidth());
         final int switchWidth = Math.max(mSwitchMinWidth, maxTextWidth * 2 + mThumbTextPadding * 4 + mTempRect.left + mTempRect.right);
         final int switchHeight = mTrackDrawable.getIntrinsicHeight();
-
-        mThumbWidth = maxTextWidth + mThumbTextPadding * 2;
+//TODO:remove this comment if change circle thumb 
+        //mThumbWidth = maxTextWidth + mThumbTextPadding * 2;
 
         mSwitchWidth = switchWidth;
         mSwitchHeight = switchHeight;
-
+        mThumbWidth = switchHeight;
+//        Log.d(VIEW_LOG_TAG, "switch height is >> " + mSwitchHeight);
+//        Log.d(VIEW_LOG_TAG, "switch width is >> " + mSwitchWidth);
+//        Log.d(VIEW_LOG_TAG, "thumb width is >> " + mThumbWidth);
+ 
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         final int measuredHeight = getMeasuredHeight();
         if (measuredHeight < switchHeight) {
@@ -518,6 +523,8 @@ public class Switch extends CompoundButton {
         mSwitchTop = switchTop;
         mSwitchBottom = switchBottom;
         mSwitchRight = switchRight;
+//        Log.d(VIEW_LOG_TAG, "switch left is >> " + mSwitchLeft);
+//        Log.d(VIEW_LOG_TAG, "switch right is >> " + mSwitchRight);
     }
 
     @Override
@@ -546,7 +553,10 @@ public class Switch extends CompoundButton {
         final int thumbPos = (int) (mThumbPosition + 0.5f);
         final int thumbLeft = switchInnerLeft - mTempRect.left + thumbPos;
         final int thumbRight = switchInnerLeft + thumbPos + mThumbWidth + mTempRect.right;
-
+//        Log.d(VIEW_LOG_TAG, "thumbLeft is >> " + thumbLeft);
+//        Log.d(VIEW_LOG_TAG, "switchTop is >> " + switchTop);
+//        Log.d(VIEW_LOG_TAG, "thumbRight is >> " + thumbRight);
+//        Log.d(VIEW_LOG_TAG, "switchBottom is >> " + switchBottom);
         mThumbDrawable.setBounds(thumbLeft, switchTop, thumbRight, switchBottom);
         mThumbDrawable.draw(canvas);
 

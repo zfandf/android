@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        style="@style/ProgressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center" />
+
+    <cn.m15.app.android.gotransfer.ui.widget.FloatingGroupExpandableListView
+        android:id="@+id/lv_picture_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:choiceMode="multipleChoice"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="0dp"
+        android:groupIndicator="@null"
+        android:listSelector="@android:color/transparent"
+        android:visibility="gone" />
+
+    <!--
+         <ExpandableListView 
+        android:id="@+id/lv_picture_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:choiceMode="multipleChoice"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="0dp"
+        android:visibility="gone"
+        android:background="@null"
+        android:groupIndicator="@null"
+        android:listSelector="@android:color/transparent"  />
+    -->
+
+</FrameLayout>

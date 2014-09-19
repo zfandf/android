@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rl_child"
+    android:layout_width="match_parent"
+    android:layout_height="94dp"
+    android:descendantFocusability="blocksDescendants" >
+
+    <ImageButton
+        android:id="@+id/cb_mediafile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="24dp"
+        android:background="@drawable/item_selected"
+        android:clickable="false"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:gravity="center" />
+
+    <ImageView
+        android:id="@+id/img_mediafile"
+        android:layout_width="85dp"
+        android:layout_height="85dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="4dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginRight="4dp"
+        android:layout_marginTop="3dp"
+        android:contentDescription="@null"
+        android:src="@drawable/bg_music" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="8dp"
+        android:layout_alignTop="@+id/img_mediafile"
+        android:layout_alignBottom="@+id/img_mediafile"
+        android:gravity="center_vertical"
+        android:layout_toLeftOf="@+id/cb_mediafile"
+        android:layout_toRightOf="@+id/img_mediafile"
+        android:orientation="vertical" >
+
+        <cn.m15.app.android.gotransfer.ui.widget.MarqueeTextView
+            android:id="@+id/tv_meidafile_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="marquee"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:singleLine="true"
+            android:textColor="@color/c2"
+            android:textSize="@dimen/t4" />
+
+        <TextView
+            android:id="@+id/tv_mediafile_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:textColor="@color/c8"
+            android:textSize="@dimen/t5" />
+
+        <TextView
+            android:id="@+id/tv_mediafile_size"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:textColor="@color/c8"
+            android:textSize="@dimen/t5" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/c4" />
+
+</RelativeLayout>

@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">GOTransfer</string>
+    
+    <!-- home -->
+    <string name="hot_selling">Hot Share</string>
+    <string name="invite_friends">Invite friends</string>
+    <string name="connect_friends">Connect friends</string>
+    <string name="cancel">Cancel</string>
+    <string name="send_with_number">Send(%1$d)</string>
+    <string name="disconnect">Disconnect</string>
+    <string name="record">Record</string>
+    <string name="no_wifi_connected"> NOT connected to any Wifi network</string>
+    <string name="clear_all_selected_files">Whether to cancel %1$d selected file</string>
+    <string name="ok">OK</string>
+    <string name="select_user_hint">Select receiver</string>
+    <string name="quit_app_or_not">Confirm Quit?</string>
+    <string name="quit">Quit</string>
+    <string name="change_name">Change Name:</string>
+    <string name="transfer_status_unknow">Unknown</string>
+    <string name="username_limit_hint">Support a maximum of 5 Chinese characters and 15 English characters</string>
+    <string name="wifi_connect_failed">连接已断开</string>
+
+    <!-- share activity -->
+    <string name="wifiap_share">Hotspot</string>
+    <string name="bluetooth_share">Bluetooth</string>
+    <string name="share_description_1">If your friends\' device is Android, you can tansfer installation package by near field and without network charges transmission</string>
+    <string name="share_description_2">Share the download link</string>
+    <string name="free_share_step1">Step 1:\nPlease make you friends open WIFI,then join the nerwork:%1$s</string>
+    <string name="free_share_step2">Step 2:\nOpen a browser,enter\n%1$s or scan QR Code,download it acooding to page recommends\n</string>
+
+    <!-- connect friends -->
+    <string name="connect_iphone">Connect Iphone</string>
+    <string name="friends_install">Invite friends</string>
+    <string name="create_connection">Send</string>
+    <string name="create_connection_btn_send">Send</string>
+    <string name="join_connection">Receive</string>
+    <string name="join_time_out"> Connection Timeout</string>
+    <string name="connection_apple_step1">Step 1:\nDirect IOS device to enter\"Settings-Wi-Fi\"and join</string>
+    <string name="wifiap">%1$s</string>
+    <string name="connection_apple_step2">Step 2:\nDirect IOS device to return to GOTansfer app,then click\"Enter\"</string>
+    <string name="create_connection_hint">Other phones will join in the connection I create</string>
+    <string name="join_connection_hint">I will join in the connection other phones create</string>
+
+    <!-- connect pc -->
+    <string name="connect_pc">Connect Computer</string>
+    <string name="connect_pc_stepone">Step 1</string>
+    <string name="connect_pc_stepone_hint">Connect computer and mobile to the same local area network</string>
+    <string name="connect_pc_stepone_netname">current network is:</string>
+    <string name="connect_pc_steptwo">Step 2</string>
+    <string name="connect_pc_steptwo_hint">Open the link below on your computer\'s browser</string>
+    <string name="connect_pc_stepthree">Step 3</string>
+    <string name="connect_pc_stepthree_hint">Complete connected computer</string>
+    <string name="connect_pc_code">Enter verification code:</string>
+    <string name="link_pc_setting">Wi-Fi Setting</string>
+
+    <!-- create connection -->
+    <string name="creating_connection">Send</string>
+    <string name="creating_iscreating">Creating Link</string>
+    <string name="create_success">Success to create</string>
+    <string name="create_fail">Fail to create</string>
+    <string name="create_success_hint">Make your friends search %1$s and join in</string>
+    <string name="wait_join_time_too_long">No friend to join,disconnect?</string>
+    <string name="continue_wait">Continue waiting</string>
+
+    <!-- choose music or vidio file -->
+    <string name="video">Video</string>
+    <string name="music">Music</string>
+    <string name="file_length">Length: %1$s</string>
+    <string name="file_size">Size: %1$s</string>
+    <string name="file_artist">Artist: %1$s</string>
+    <string name="all_choose">ALL</string>
+
+    <!-- join connection -->
+    <string name="search_apList">Search</string>
+    <string name="searching">Searching Friends…</string>
+    <string name="connecting_with_somebody">Connecting"%1$s"</string>
+    <string name="not_find_connection">No connectable friends,click icon to retry searching.</string>
+
+    <!-- conversation -->
+    <string name="transfer_history">History</string>
+    <string name="accept">Receive</string>
+    <string name="refuse">Refuse</string>
+    <string name="transfer_wait_send">Waiting to send</string>
+    <string name="transfer_wait_receive">Waiting to receive</string>
+    <string name="transfer_sending">Sending</string>
+    <string name="transfer_receiving">Receiving</string>
+    <string name="transfer_send_success">Success to send</string>
+    <string name="transfer_completed">Done</string>
+    <string name="transfer_cancelled">Cancelled</string>
+    <string name="transfer_cancelled_by_peer">Been cacelles by the other side</string>
+    <string name="transfer_refused">Refused</string>
+    <string name="transfer_receive_failed">fail to receive</string>
+    <string name="transfer_send_failed">fail to send</string>
+    <string name="storage_too_small"> Insufficient storage space in system</string>
+    <string name="transfer_send_to">Send to%1$s</string>
+    <string name="transfer_receive_from">Receive from%1$s</string>
+
+    <!-- setting -->
+    <string name="share_3G">Share your cellphone traffic</string>
+    <string name="show_hidden_files">Show hidden files</string>
+    <string name="hidden_files_explain">show hidden files</string>
+    <string name="share_3G_explain">Allow friends to use your cellphone traffic who join in your hotspot</string>
+    <string name="show_empty" />
+
+    <!-- about Go Transfer -->
+    <string name="checkversion">Check the new version</string>
+    <string name="rate">Please give GoTransfer a sore</string>
+    <string name="company_CN">Beijing Mobilewoo Information Technology Co., Ltd.</string>
+    <string name="company_EN">Copyright: 2010–2014 Beijing Mobilewoo Info Tech, CO, LTD\nAll Rights Reserved</string>
+    <string name="version"> GoTransfer v%1$s</string>
+
+    <!-- dialog file detail -->
+    <string name="name">Name</string>
+    <string name="time">Time</string>
+    <string name="location">Location</string>
+    <string name="size">Size</string>
+    <string name="file_not_exist">The file does not exist</string>
+    <string name="file_deleted">The file has been removed</string>
+
+    <!-- bluetooth share -->
+    <string name="share_go_transfer">Share GOTransfer</string>
+    <string name="share_by_others">Bluetooth device not found，please choose other methe to share</string>
+
+    <!-- other share -->
+    <string name="share_wifiap">Hotspot</string>
+    <string name="share_other">More share methods</string>
+    <string name="share_wx_friend">Wechat Contacts</string>
+    <string name="share_friend_circle">Moments</string>
+    <string name="share_qr_code">QR Code</string>
+    <string name="share_sms">SMS</string>
+    <string name="share_mail">Email</string>
+    <string name="share_weibo">Weibo</string>
+    <string name="share_qr_code_desc">QR Code Picture</string>
+    <string name="share_no_support">Fail to share</string>
+    <string name="share_sms_content">Hi，I\'m using GOTransfer,a free and wireless file transmission tool with quick transmission speed！Come on, to try it： http://www.gotransf.com</string>
+    <string name="share_wx_link">http://www.m15.cn</string>
+    <string name="share_wx_text">GOTransfer</string>
+    <string name="share_wx_desc">Hi，I\'m using GOTransfer,a free and wireless file transmission tool with quick transmission speed！Come on, to try it： http://www.gotransf.com</string>
+    <string name="share_mail_subject">GOTransfer</string>
+    <string name="share_mail_content">Hi，I\'m using GOTransfer,a free and wireless file transmission tool with quick transmission speed！Come on, to try it： http://www.gotransf.com</string>
+    <string name="share_qr_code_title">Share by QR Code</string>
+    <string name="share_weibo_content">Hi，I\'m using GOTransfer,a free and wireless file transmission tool with quick transmission speed！Come on, to try it： http://www.gotransf.com</string>
+    <string name="wx_app_not_installed">You don\'t install Wechat</string>
+    <string name="wx_version_too_low">Your beta of Wechat too low to support share to Moments</string>
+    <string name="xinlang_version_too_low">Your beta of Sina Weibo too low to support share</string>
+    <string name="xinlang_app_not_installed">You don\'t install Sina Weibo</string>
+
+    <!-- others -->
+    <string name="confirm">Confirm</string>
+    <string name="not_enough_space_content">Insufficient disk space，file transmission has been canceled.</string>
+    <string name="transfer_cancel_content">Are you sure you want to cancel sending those files?</string>
+    <string name="transfer_continue">Continue sending</string>
+    <string name="network_disconnected_content">Network connection is interrupted！</string>
+    <string name="disconnect_all_transfers_content">Return will interrupt all sending files,interrupt?</string>
+    <string name="close_connection_content">Return Homepage will interrupt current link, if you share by making you friends connect the hotspot you created,the all link will be interrupted. Still interrupt？</string>
+    <string name="i_know">I know</string>
+    <string name="sdcard_disable">SDCard can\'t be uesd!</string>
+    <string name="waiting_join">Success to create and inform your friends to join in …</string>
+    <string name="create_wifi_failed">fail to create…</string>
+    <string name="creating_wifi">Creating</string>
+    <string name="about">About</string>
+
+</resources>

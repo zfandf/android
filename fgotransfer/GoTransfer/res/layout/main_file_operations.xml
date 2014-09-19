@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:visibility="gone" >
+
+    <Button
+        android:id="@+id/btn_cancel"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_weight="1"
+        android:background="@color/c4"
+        android:text="@string/cancel"
+        android:textColor="@color/c7"
+        android:textSize="@dimen/t3" />
+
+    <Button
+        android:id="@+id/btn_send"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_marginLeft="1dp"
+        android:layout_weight="1"
+        android:background="@color/c4"
+        android:text="@string/send_with_number"
+        android:textColor="@color/c7"
+        android:textSize="@dimen/t3" />
+
+</LinearLayout>

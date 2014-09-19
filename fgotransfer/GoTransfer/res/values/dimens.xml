@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="actionbar_height">48dp</dimen>
+    <dimen name="t1">20sp</dimen>
+    <dimen name="t2">19sp</dimen>
+    <dimen name="t3">16sp</dimen>
+    <dimen name="t4">14sp</dimen>
+    <dimen name="t5">12sp</dimen>
+    <dimen name="t6">11sp</dimen>
+    <dimen name="t7">10sp</dimen>
+    <dimen name="transfer_file_card_margin">5dp</dimen>
+
+
+</resources>

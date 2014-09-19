@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/c5"
+    android:orientation="vertical"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingTop="26dp" >
+
+    <TextView
+        android:id="@+id/tv_toast1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/share_description_1"
+        android:textColor="@color/c1"
+        android:textSize="@dimen/t3" />
+
+    <GridView
+        android:id="@+id/gv_share1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:listSelector="#00000000"
+        android:numColumns="3"
+        android:paddingTop="20dp"
+        android:stretchMode="columnWidth"
+        android:verticalSpacing="30dp" >
+    </GridView>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="16dp"
+        android:background="@color/c3" />
+
+    <TextView
+        android:id="@+id/tv_toast2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="16dp"
+        android:text="@string/share_description_2"
+        android:textColor="@color/c1"
+        android:textSize="@dimen/t3" />
+
+    <GridView
+        android:id="@+id/gv_share2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:listSelector="#00000000"
+        android:numColumns="3"
+        android:paddingTop="20dp"
+        android:stretchMode="columnWidth"
+        android:verticalSpacing="30dp" >
+    </GridView>
+
+</LinearLayout>

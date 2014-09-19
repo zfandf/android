@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res/cn.m15.app.android.gotransfer"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <cn.m15.app.android.gotransfer.ui.widget.PagerSlidingTabStrip
+        android:id="@+id/tab"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignParentTop="true"
+        android:background="@color/c7"
+        android:textColor="@color/tab_text"
+        android:textSize="@dimen/t2"
+        app:pstsDividerColor="@android:color/transparent"
+        app:pstsIndicatorColor="@color/c3"
+        app:pstsIndicatorHeight="2dp"
+        app:pstsShouldExpand="true"
+        app:pstsUnderlineColor="@color/c4"
+        app:pstsUnderlineHeight="1dp" />
+
+    <cn.m15.app.android.gotransfer.ui.widget.CustomViewPager
+        android:id="@+id/vp_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/view_line_org"
+        android:layout_below="@+id/tab"
+        android:background="@android:color/white" />
+
+    <ViewStub
+        android:id="@+id/vs_file_operations"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/view_line_org"
+        android:layout="@layout/main_file_operations" />
+
+    <View
+        android:id="@+id/view_line_org"
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="56dp"
+        android:background="@color/c4" />
+
+    <Button
+        android:id="@+id/btn_hot_selling"
+        android:layout_width="fill_parent"
+        android:layout_height="56dp"
+        android:layout_alignBaseline="@+id/tv_connect_friends"
+        android:layout_alignParentLeft="true"
+        android:layout_toLeftOf="@+id/tv_connect_friends"
+        android:background="@color/c7"
+        android:drawableTop="@drawable/bg_btn_home_hot"
+        android:text="@string/hot_selling"
+        android:textColor="@color/c1"
+        android:textSize="@dimen/t5" />
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="@color/c4" />
+
+    <Button
+        android:id="@+id/btn_invite_friends"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_alignBaseline="@+id/tv_connect_friends"
+        android:layout_alignParentRight="true"
+        android:layout_toRightOf="@+id/tv_connect_friends"
+        android:background="@color/c7"
+        android:drawableTop="@drawable/bg_btn_home_friend"
+        android:text="@string/friends_install"
+        android:textColor="@color/c1"
+        android:textSize="@dimen/t5" />
+
+    <ViewStub
+        android:id="@+id/vs_connection"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_alignParentBottom="true"
+        android:layout="@layout/main_connection" />
+
+    <TextView
+        android:id="@+id/tv_connect_friends"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center_horizontal"
+        android:drawableTop="@drawable/btn_logo"
+        android:gravity="center_horizontal"
+        android:text="@string/connect_friends"
+        android:textColor="@color/c1"
+        android:textSize="@dimen/t5" />
+
+</RelativeLayout>

@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.fan.appphonemanage.AppListActivity$PlaceholderFragment" >
+    tools:context="com.fan.myphone.utils.AppListActivity$PlaceholderFragment" >
 
     <GridView
         android:id="@+id/gridView1"

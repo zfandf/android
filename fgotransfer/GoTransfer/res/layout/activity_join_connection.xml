@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rl_join"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:background="@color/c5" >
+
+    <TextView
+        android:id="@+id/tv_join_connection"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:paddingBottom="8dp"
+        android:paddingTop="28dp"
+        android:text="@string/join_connection"
+        android:textColor="@color/c1"
+        android:textSize="@dimen/t1" />
+
+    <TextView
+        android:id="@+id/tv_searching"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_join_connection"
+        android:layout_centerInParent="true"
+        android:text="@string/searching"
+        android:textColor="@color/c3"
+        android:textSize="@dimen/t5" />
+
+    <ImageButton
+        android:id="@+id/ib_searchAp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:background="@drawable/favicon"
+        android:contentDescription="@null" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:contentDescription="@null"
+        android:scaleType="center"
+        android:src="@drawable/img_receive_ripple" />
+
+    <ImageView
+        android:id="@+id/iv_searchAp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="TRUE"
+        android:contentDescription="@null"
+        android:scaleType="center"
+        android:src="@drawable/img_receive_radar" />
+
+    <TextView
+        android:id="@+id/tv_connecting"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="@string/connecting_with_somebody"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/tv_not_find_connection"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ib_searchAp"
+        android:gravity="center"
+        android:paddingTop="20dp"
+        android:text="@string/not_find_connection"
+        android:textColor="@color/c3"
+        android:textSize="@dimen/t4"
+        android:visibility="gone" />
+
+</RelativeLayout>

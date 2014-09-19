@@ -1,4 +1,4 @@
-Android 目录
+--------------Android 目录
 src 存放资源文件
 gen 自动生成并存放资源文件的唯一ID
 Android4.2.2 该项目支持的jar包以及打包时所需要的 META-INF 目录
@@ -11,3 +11,8 @@ res 存放图片、声音、布局、系统的一些格式文件等
     value 资源描述性文件， 字符串、样式、颜色等
 
 AndroidManifest.xml 系统控制文件
+
+----------------- AndroidManifest.xml文件解析
+
+
+
