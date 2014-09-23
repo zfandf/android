@@ -1,10 +1,5 @@
 apk/
 bin/
 gen/
-.settings/
-.metadata/
 *.DS_Store
-*.classpath
-*.lint.xml
-.project
-*/local.properties
+.metadata/*

@@ -1,0 +1,5 @@
+package cn.m15.app.android.gotransfer.net.httpserver;
+
+public class PhotoServeAction {
+
+}
