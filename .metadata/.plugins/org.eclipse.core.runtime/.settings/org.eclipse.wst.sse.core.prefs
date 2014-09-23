@@ -1,2 +1,2 @@
 eclipse.preferences.version=1
-task-tag-projects-already-scanned=MyChoice,MyClock,MyPhone,MyWifi,appcompat_v7,MyAdapterTest,ActivityA,ActivityLifecycle
+task-tag-projects-already-scanned=MyChoice,MyClock,MyPhone,MyWifi,appcompat_v7,MyAdapterTest,ActivityA,ActivityLifecycle,ContactsListActivity,FragmentBasics

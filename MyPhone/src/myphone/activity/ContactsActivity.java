@@ -97,13 +97,18 @@ public class ContactsActivity extends FragmentActivity implements ContactsFragme
 	@Override
 	public void onItemSelected(int position) {
 		// TODO Auto-generated method stub
-//		viewItemDetail(position);
+		Log.i(TAG, position+"");
+		viewItemDetail(position);
 //		viewItemDetailSystem(position);
 
 //		callPhone(position);
-		viewCallPage(position);
+//		viewCallPage(position);
+//		viewButton(position);
 	}
 	
+//	public void viewButton(int position) {
+//		
+//	}
 	// 显示自定义联系人详情页面
 	public void viewItemDetail(int position) {
 		// Create fragment and give it an argument for the selected article

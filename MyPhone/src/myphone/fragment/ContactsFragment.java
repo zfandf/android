@@ -15,7 +15,7 @@ import android.provider.ContactsContract.Contacts;
 import android.support.v4.app.ListFragment;
 import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 
 @SuppressLint("NewApi")
@@ -30,17 +30,6 @@ public class ContactsFragment extends ListFragment {
         "Article Two"
     };
 	
-	
-	private final static String[] FROM_COLUMNS = {
-        Build.VERSION.SDK_INT
-                >= Build.VERSION_CODES.HONEYCOMB ?
-                Contacts.DISPLAY_NAME_PRIMARY :
-                Contacts.DISPLAY_NAME
-	};
-	
-	private final static int[] TO_IDS = {
-        R.id.contact_list_item
-	};
 	// Define global mutable variables
     // Define a ListView object
     ListView mContactsList;
@@ -61,8 +50,6 @@ public class ContactsFragment extends ListFragment {
 //    private static final int LOOKUP_KEY_INDEX = 1;
     // The column index for the DISPLAY_NAME column
     private static final int DISPLAY_NAME_INDEX = 2;
-    // The column index for the CommonDataKinds.Phone.NUMBER column
-    private static final int NUMBER_INDEX = 2;
 
 //    private static final String SELECTION = DISPLAY_NAME + " = \"Alan\"";
     private static final String SELECTION = null;
@@ -132,7 +119,15 @@ public class ContactsFragment extends ListFragment {
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
     	// TODO Auto-generated method stub
-    	mCallbacks.onItemSelected(position);
+    	Log.i(TAG, v.toString());
+    	LinearLayout operateView = (LinearLayout) v.findViewById(R.id.contact_item_operate);
+    	if (operateView.getVisibility() == View.VISIBLE) {
+    		operateView.setVisibility(View.GONE);
+    	} else {
+    		operateView.setVisibility(View.VISIBLE);
+    	}
+    	
+//    	mCallbacks.onItemSelected(position);
     }
 
 }
