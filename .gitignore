@@ -1,6 +1,7 @@
 apk/
 bin/
 gen/
+fgotransfer/
 .settings/
 .metadata/
 *.DS_Store
