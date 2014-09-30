@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:state_pressed="false"><bitmap android:gravity="top" android:src="@drawable/bg_share" ></bitmap></item>
-    <item android:state_pressed="true"><bitmap android:gravity="top" android:src="@drawable/bg_share_pressed"></bitmap></item>
-</selector>
