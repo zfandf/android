@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/id_main_linear"
     android:padding="20dp"
     android:layout_width="match_parent"
@@ -30,5 +31,13 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
         android:text="@string/main_btn_contacts" />
+    
+    <Button
+        android:id="@+id/id_main_btn_picture"
+        style="@style/MainActivityStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:text="@string/main_btn_picture" />
     
 </LinearLayout>

@@ -10,19 +10,25 @@
     <string name="main_btn_applist">应用列表</string>
     <string name="main_btn_filelist">文件列表</string>
     <string name="main_btn_contacts">联系人</string>
+    <string name="main_btn_picture">图片管理</string>
     <string name="title_activity_app_list">应用管理</string>
     <string name="title_activity_file_list">文件管理</string>
 
     <!-- filelist -->
     <string name="file_separator">/</string>
-    <string name="title_activity_contacts">ContactsActivity</string>
 
     <!--  -->
     <string name="title_activity_photo">PhotoActivity</string>
 
     <!-- contacts -->
+    <string name="title_activity_contacts">通讯录</string>
     <string name="title_activity_contact">联系人</string>
     <string name="text_contact_search_input">输入联系人名称</string>
     <string name="text_contact_search_btn">搜索</string>
+    <string name="title_activity_dialog">DialogActivity</string>
+    <string name="text_call_phone">拨打电话</string>
+    <string name="text_contact_detail">查看详情</string>
+    <string name="title_activity_contact_detail">ContactDetailActivity</string>
+    <string name="title_activity_picture">PictureActivity</string>
 
 </resources>

@@ -19,8 +19,9 @@
     
     <!-- main button -->
     <style name="MainActivityStyle" parent="AppBaseTheme">
-        <item name="android:textColor">@color/c2</item>
-        <item name="android:background">@color/c1</item>
+        <item name="android:padding">10dp</item>
+        <item name="android:textColor">@color/c1</item>
+        <item name="android:background">@drawable/button</item>
         <item name="android:text"></item>
     </style>
     

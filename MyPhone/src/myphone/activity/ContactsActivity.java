@@ -5,11 +5,8 @@ import java.util.ArrayList;
 import myphone.fragment.ContactsFragment;
 import myphone.fragment.FooterFragment;
 import myphone.utils.ContactInfo;
-import android.content.ContentUris;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-import android.provider.ContactsContract.Contacts;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
@@ -18,22 +15,37 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.TextView;
 
-public class ContactsActivity extends FragmentActivity implements ContactsFragment.OnContactSelectedListener, OnClickListener {
+public class ContactsActivity extends FragmentActivity implements ContactsFragment.OnContactSelectedListener {
 
-	public static final String TAG = "main";
+	public static final String TAG = "ContactsActivity";
 	
 	public ContactInfo mContactInfo = ContactInfo.getIntance();
 	
 	public static ArrayList<String> mContactIds = new ArrayList<String>();
+	
+	private static int mCount = 0;
+	
+	public static ArrayList<String> getmContactIds() {
+		return mContactIds;
+	}
+
+	public static void setmContactIds(ArrayList<String> mContactIds) {
+		ContactsActivity.mContactIds = mContactIds;
+	}
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_contacts);
+		
+		if (savedInstanceState != null) {
+			mCount = savedInstanceState.getInt("mCount");
+		}
+		
+		Log.i("savedInstanceState", mCount+"");
 		
         if (savedInstanceState != null) {
             return;
@@ -43,21 +55,8 @@ public class ContactsActivity extends FragmentActivity implements ContactsFragme
         ContactsFragment contactlistFragment = new ContactsFragment();
         
         getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, contactlistFragment).commit();
-        
-        
-        // init search
-        Button searchBtn = (Button)findViewById(R.id.contact_search_btn);
-        searchBtn.setOnClickListener(this);
 	}
-
-	public static ArrayList<String> getmContactIds() {
-		return mContactIds;
-	}
-
-	public static void setmContactIds(ArrayList<String> mContactIds) {
-		ContactsActivity.mContactIds = mContactIds;
-	}
-
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
@@ -95,26 +94,43 @@ public class ContactsActivity extends FragmentActivity implements ContactsFragme
 	}
 
 	@Override
-	public void onItemSelected(int position) {
+	public void onItemSelected(int position, View v) {
 		// TODO Auto-generated method stub
 		Log.i(TAG, position+"");
-		viewItemDetail(position);
-//		viewItemDetailSystem(position);
-
-//		callPhone(position);
-//		viewCallPage(position);
-//		viewButton(position);
+		TextView contactIdView = (TextView)v.findViewById(R.id.contact_id);
+		Long contact_id = Long.parseLong((String) contactIdView.getText());
+		
+		Log.i(TAG, contact_id+"");
+		viewContactDetail(contact_id);
 	}
 	
-//	public void viewButton(int position) {
-//		
-//	}
+	public void viewContactDetail(Long contact_id) {
+		Intent intent = new Intent();
+		intent.setClass(this, ContactDetailActivity.class);
+		// 第一种向intent传值方式
+		intent.putExtra("contact_id", contact_id);
+		
+		// 第二种向intent传值方式
+		Bundle bundle = new Bundle();
+		bundle.putString("haha", "hahahahah");
+		bundle.putLong("contact_id", contact_id);
+		intent.putExtras(bundle);
+		
+		startActivityForResult(intent, 0);
+	}
+	
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		// TODO Auto-generated method stub
+		super.onActivityResult(requestCode, resultCode, data);
+	}
+	
 	// 显示自定义联系人详情页面
-	public void viewItemDetail(int position) {
+	public void viewItemDetail(Long contact_id) {
 		// Create fragment and give it an argument for the selected article
         FooterFragment newFragment = new FooterFragment();
         Bundle args = new Bundle();
-        args.putInt(FooterFragment.ARG_POSITION, position);
+        args.putLong(FooterFragment.CURRENT_CONTACT_ID, contact_id);
         newFragment.setArguments(args);
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 
@@ -127,40 +143,45 @@ public class ContactsActivity extends FragmentActivity implements ContactsFragme
         transaction.commit();
 	}
 	
-	// 显示系统联系人详情页面
-	public void viewItemDetailSystem(int position) {
-		String mCurrentContactId = ContactsActivity.mContactIds.get(position);
-		Log.i(TAG, mCurrentContactId);
-  
-		Uri personUri = ContentUris.withAppendedId(Contacts.CONTENT_URI, new Integer(mCurrentContactId)); 
-		Intent intent = new Intent(); 
-		intent.setAction(Intent.ACTION_VIEW); 
-		intent.setData(personUri); 
-		startActivity(intent);
-	}
-	
-	// 拨打电话
-	public void callPhone(int position) {
-		String mCurrentContactId = ContactsActivity.mContactIds.get(position);
-		String phoneNumber = mContactInfo.getPhoneNumber(this, mCurrentContactId);
-		Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + phoneNumber));
-		startActivity(intent);
-	}
-	
-	// 选择联系人
-	public void viewCallPage(int position) {
-		Intent intent = new Intent(Intent.ACTION_PICK);
-		intent.setData(Contacts.CONTENT_URI); 
-		startActivity(intent);
-	}
-
 	@Override
-	public void onClick(View v) {
+	protected void onStart() {
 		// TODO Auto-generated method stub
-		int id = v.getId();
-		switch (id) {
-			case R.id.contact_search_btn:
-				
-		}
+		super.onStart();
+		Log.i(TAG, new Throwable().getStackTrace()[0].getMethodName());
+	}
+	
+	@Override
+	protected void onResume() {
+		// TODO Auto-generated method stub
+		super.onResume();
+		Log.i(TAG, new Throwable().getStackTrace()[0].getMethodName());
+	}
+	
+	@Override
+	protected void onStop() {
+		// TODO Auto-generated method stub
+		super.onStop();
+		Log.i(TAG, new Throwable().getStackTrace()[0].getMethodName());
+	}
+	
+	@Override
+	protected void onPause() {
+		// TODO Auto-generated method stub
+		super.onPause();
+		Log.i(TAG, new Throwable().getStackTrace()[0].getMethodName());
+	}
+	
+	@Override
+	protected void onDestroy() {
+		// TODO Auto-generated method stub
+		super.onDestroy();
+		Log.i(TAG, new Throwable().getStackTrace()[0].getMethodName());
+	}
+	
+	@Override
+	protected void onRestart() {
+		// TODO Auto-generated method stub
+		super.onRestart();
+		Log.i(TAG, new Throwable().getStackTrace()[0].getMethodName());
 	}
 }

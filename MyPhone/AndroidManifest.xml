@@ -5,11 +5,12 @@
     android:versionName="1.0" >
 
     <uses-sdk
-        android:minSdkVersion="8"
+        android:minSdkVersion="11"
         android:targetSdkVersion="21" />
 
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
@@ -35,6 +36,19 @@
         <activity
             android:name=".ContactsActivity"
             android:label="@string/title_activity_contacts" >
+        </activity>
+        <activity
+            android:name=".DialogActivity"
+            android:label="@string/title_activity_dialog"
+            android:theme="@android:style/Theme.Dialog" >
+        </activity>
+        <activity
+            android:name=".ContactDetailActivity"
+            android:label="@string/title_activity_contact_detail" >
+        </activity>
+        <activity
+            android:name=".PictureActivity"
+            android:label="@string/title_activity_picture" >
         </activity>
     </application>
 

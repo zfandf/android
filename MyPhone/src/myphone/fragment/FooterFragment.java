@@ -1,6 +1,5 @@
 package myphone.fragment;
 
-import myphone.activity.ContactsActivity;
 import myphone.activity.R;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -15,13 +14,11 @@ import android.widget.TextView;
 
 public class FooterFragment extends Fragment {
 	
-	public final static String ARG_POSITION = "position";
+	public static final String CURRENT_CONTACT_ID = "contact_id";
 	
-	int mCurrentPosition = -1;
+	public long mCurrentContactId = -1;
 	
 	public static final String TAG = "footer";
-	
-	private static String mCurrentContactId;
 	
 	static String[] Articles = {
         "Article One\n\nExcepteur pour-over occaecat squid biodiesel umami gastropub, nulla laborum salvia dreamcatcher fanny pack. Ullamco culpa retro ea, trust fund excepteur eiusmod direct trade banksy nisi lo-fi cray messenger bag. Nesciunt esse carles selvage put a bird on it gluten-free, wes anderson ut trust fund twee occupy viral. Laboris small batch scenester pork belly, leggings ut farm-to-table aliquip yr nostrud iphone viral next level. Craft beer dreamcatcher pinterest truffaut ethnic, authentic brunch. Esse single-origin coffee banksy do next level tempor. Velit synth dreamcatcher, magna shoreditch in american apparel messenger bag narwhal PBR ennui farm-to-table.",
@@ -34,7 +31,7 @@ public class FooterFragment extends Fragment {
 		// TODO Auto-generated method stub
 		Log.i(TAG, "onCreateView");
 		if (savedInstanceState != null) {
-            mCurrentPosition = savedInstanceState.getInt(ARG_POSITION);
+			mCurrentContactId = savedInstanceState.getLong(CURRENT_CONTACT_ID);
         }
 
         // Inflate the layout for this fragment
@@ -45,28 +42,24 @@ public class FooterFragment extends Fragment {
 	public void onStart() {
 		// TODO Auto-generated method stub
 		super.onStart();
-
-		Log.i(TAG, "onStart");
 		
 		Bundle args = getArguments();
         if (args != null) {
             // Set article based on argument passed in
-            updateArticleView(args.getInt(ARG_POSITION));
-        } else if (mCurrentPosition != -1) {
+            updateArticleView(args.getLong(CURRENT_CONTACT_ID));
+        } else if (mCurrentContactId != -1) {
             // Set article based on saved instance state defined during onCreateView
-            updateArticleView(mCurrentPosition);
+            updateArticleView(mCurrentContactId);
         }
 	}
 	
-	public void updateArticleView(int position) {
+	public void updateArticleView(long contact_id) {
 		Log.i(TAG, "onItemSelected");
-		mCurrentContactId = ContactsActivity.mContactIds.get(position);
-		Log.i(TAG, mCurrentContactId);
 		
 		String[] projection = new String[]{
 				Phone.NUMBER
 		};
-		String selection = Phone.CONTACT_ID + " = " + mCurrentContactId;
+		String selection = Phone.CONTACT_ID + " = " + contact_id;
 		
 		Cursor c = getActivity().getContentResolver().query(Phone.CONTENT_URI, projection, selection, null, null);
 		Log.i(TAG, c.getCount()+"");
@@ -78,6 +71,5 @@ public class FooterFragment extends Fragment {
 
         TextView article = (TextView) getActivity().findViewById(R.id.contact_footer);
         article.setText(phoneNumber);
-        mCurrentPosition = position;
     }
 }
