@@ -1,11 +1,11 @@
 apk/
 bin/
 gen/
-fgotransfer/
+doc/
 .settings/
 .metadata/
 *.DS_Store
 *.classpath
-*.lint.xml
+*/lint.xml
 .project
 */local.properties
