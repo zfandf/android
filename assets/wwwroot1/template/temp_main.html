@@ -1,0 +1,169 @@
+<style type="text/css">
+.panel {margin-bottom:0px;}
+.panel-heading {padding:0; border-bottom:0; }
+.panel-body {overflow:auto; padding:0 0 0 2px;}
+.top-btns-group {padding:7px 15px; border-bottom:1px solid #ddd; position:relative;}
+
+.view-type-box {margin-top:-4px; margin-right:15px;}
+.view-type-box span {font-size:18px;}
+
+.breadcrumb {padding:0; margin-bottom:0;}
+.brandcrumb-storage{display: inline-block; margin-right: 15px;}
+.select-all {display:inline-block; position:relative; padding:0 20px; cursor:pointer;}
+.select-all .chk-ico {top:4px; left:0; position:absolute;}
+
+.J_Curmb[action=photo] a {cursor:pointer; text-decoration:underline; margin-right:20px;}
+.J_Curmb[action=photo] a.active {text-decoration:none; cursor:default; color:#292929;}
+
+.list-top {position:relative; padding:10px 0; border-bottom:1px solid #ddd;}
+.list-top .operate-btns {display:inline-block;}
+
+.J_OperateBtns {display:inline-block;}
+#J_SelectAll .default-icon {width:35px; font-weight:normal; background:transparent;}
+
+.files-list-footer {border-top:1px solid #ddd; background-color:#f5f5f5; padding:5px 15px;}
+/* files box */
+.files-box {width:100%;}
+
+.photo-group {padding:0; border-top:0;}
+.photo-group .panel-heading {padding:10px; background-color:#f9f9f9!important;}
+.photo-group .select-all {margin-top:10px;}
+</style>
+
+<script type="text/javascript" src="assets/js/main.js"></script>
+<script type="text/javascript" src="assets/js/file.js"></script>
+<script type="text/javascript" src="assets/js/operate.js"></script>
+<script type="text/javascript" src="assets/js/modal.js"></script>
+<script type="text/javascript" src="assets/js/dirtree.js"></script>
+<div class="main-l">
+    <div class="main-l-logo"><img src="assets/image/icon.png" alt="logo" width="80"></div>
+    <div class="phone" id="J_MyDevice">My Phone</div>
+    <div id="J_MenuBox">
+        <div class="main-lmenu main-lmenu-click main-lmenu-hover" action="photo">
+            <div><span class="glyphicon glyphicon-folder-close fa-4x"></span></div>
+            <div class="J_MenuName">My Photo</div>
+        </div>
+        <div class="main-lmenu main-lmenu-click main-lmenu-hover" action="info">
+            <div><span class="glyphicon glyphicon-folder-close fa-4x"></span></div>
+            <div class="J_MenuName">My Files</div>
+        </div>
+    </div>
+</div>
+<div class="main-r">
+    <div class="panel panel-default main-body">
+        <!-- operate btn <upload files, create new dir> -->
+        <div class="panel-heading" id="J_MainHeader">
+            <div class="top-btns-group" id="J_FixedBtnsBox">
+                <button class="btn btn-default J_OperateBtn J_Refresh"><span class="glyphicon glyphicon-refresh"></span><span langkey="refreshbtn"></span></button>
+                <button class="btn btn-default J_OperateBtn J_CreateNew"><span class="glyphicon glyphicon-plus"></span>&nbsp;<span langkey="createbtn"></span></button>
+                <div id="J_UploadBox" class="novisiable J_OperateBtn">
+                    <button class="btn btn-success" id="J_Upload"><span class="glyphicon glyphicon-open"></span>&nbsp;<span langkey="uploadbtn"></span></button>
+                </div>
+            </div>
+            <!-- breadcrumb-->
+            <div id="J_CrumbsBox" class="top-btns-group">
+                <ol class="breadcrumb J_Curmb" action="info">
+                    <div class="brandcrumb-storage">
+                        <select class="form-control J_Storage input-sm"></select>
+                    </div>
+                    <!-- change view type <list, grid> -->
+                    <div class="pull-right view-type-box">
+                        <button type="button" class="btn btn-default J_ViewType" view-type="grid">
+                            <span class="glyphicon glyphicon-th"></span>
+                        </button>
+                        <button type="button" class="btn btn-default J_ViewType disabled" view-type="list">
+                            <span class="glyphicon glyphicon-th-list"></span>
+                        </button>
+                    </div>
+                </ol>
+                <div class="J_Curmb" action="photo">
+                    <a sort_type="group" class="active">相册</a>
+                    <a sort_type="time">时间</a>
+                </div>
+            </div>
+            <!-- files operate button <copy, move, delete, download> -->
+            <div class="top-btns-group" id="J_OperateBox">
+                <div id="J_SelectAll" class="select-all">
+                    <span class="chk-ico"></span>
+                    <span langkey="selectall">全选</span>
+                </div>
+                <div class="J_OperateBtns novisiable">
+                    <button class="btn btn-default J_OperateBtn J_CopyMove" action="copy" langkey="copybtn"></button>
+                    <button class="btn btn-default J_OperateBtn J_CopyMove" action="move" langkey="movebtn"></button>
+                    <button class="btn btn-default J_OperateBtn J_Delete"><span class="glyphicon glyphicon-trash"></span><span langkey="deletebtn"></span></button>
+                    <button class="btn btn-success J_OperateBtn J_Download"><span class="glyphicon glyphicon-save"></span><span langkey="downloadbtn"></span></button>
+                </div>
+            </div>
+            </div>
+        </div>
+        <div class="panel-body" id="J_MainBody">
+            <div class="files-box list" id="J_FilesList"></div>
+        </div>
+        <div class="files-list-footer textr" id="J_MainFooter">
+            Version:
+            <span id="J_Version"></span>&nbsp;&nbsp;&nbsp;
+            <span id="J_StorageStatus" class="pull-left"></span>
+        </div>
+    </div>
+</div>
+
+<!-- photo group -->
+<script type="text/template" id="J_PhotoGroupTmpl">
+    <div class="panel panel-default photo-group">
+        <div class="select-all pull-right J_BucketSelect">
+            <span class="chk-ico"></span>
+            <span langkey="selectall">全选</span>
+        </div>
+        <div class="panel-heading plus J_Bucket">
+            <span class="plus glyphicon glyphicon-plus J_BucketSign"></span>
+            <span class="photo-group-name">{bucket_name}</span>
+        </div>
+      <div class="panel-body hide J_Photos">I am comming</div>
+    </div>
+</script>
+
+<!-- dir tree -->
+<script type="text/template" id="J_TreeTmpl" name="upload">
+    <ul id="J_DirTree"></ul>
+</script>
+
+<!-- dir tree dir-->
+<script type="text/template" id="J_TreeNodeTmpl">
+    <li>
+        <div class="treeview-node {cls}" style="padding-left:{paddingLeft}px" idx="{idx}" path="{path}">
+            <p>
+                <span class="plus glyphicon glyphicon-plus"></span>
+                <span class="loading-dir"></span>
+                <span class="dir-icon default-icon"></span>
+                <span class="file-name"><a>{name}</a></span>
+            </p>
+        </div>
+    </li>
+</script>
+
+<!-- upload files -->
+<div id="J_UploadBody" class="upload-btns hide">
+    <button class="btn btn-default hide" id="J_UploadCancelAll" langkey="cancelall">Cancel All</button>
+    <button class="btn btn-default hide" id="J_UploadComplete" langkey="complete">complete</button>
+</div>
+<!-- new dir -->
+<script type="text/template" id="J_NewDirTmpl">
+    <span id="J_Creating">
+        <input form="J_NewForm" class="new-dir form-control" type="text" id="J_NewDirName" value=""/>
+        <span class="glyphicon glyphicon-ok" id="J_CreateOk"></span>
+        <span class="glyphicon glyphicon-remove" id="J_CreateCancel"></span>
+    </span>
+</script>
+
+<!-- view file-->
+<script type="text/template" id="J_FileTmpl">
+    <div class="defaultstyle {cls} f-t1" path="{path}">
+        <div class="file-img">
+            <p>
+                <span class="default-icon {type}-icon"><span class="chk-box"><span class="chk-ico"></span></span></span>
+            </p>
+        </div>
+        <div class="file-name"><p><a path="{path}" class="{type}-link">{name}</a></p></div>
+        <div class="file-time"><p>{time}</p></div>
+    </div>
+</script>

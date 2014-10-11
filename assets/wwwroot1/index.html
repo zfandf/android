@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title langkey="title">Go快传网页版 V2.0</title>
+	<script type="text/javascript" src="assets/js/language.js"></script>
+	<script type="text/javascript" src="assets/js/init.js"></script>
+	<!--[if lte IE 7]>
+	<script type="text/javascript">
+		var warning = {
+			'cn': "IE 版本过低, 建议你升级 IE, 使用其它浏览器, 或者使用 FTP 进行文件管理",
+			'en': "IE version is too low, it is recommended that you upgrade, IE use other browser or using FTP file management!"
+		};
+		CountryLanguage = CountryLanguage || 'cn';
+		alert(warning[CountryLanguage]);
+		window.location.href = "about:blank";
+	</script>
+	<![endif]-->
+	
+	<link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
+<!-- 	<link rel="stylesheet" type="text/css" href="assets/css/bootstrap-theme.min.css"> -->
+	<link rel="stylesheet" type="text/css" href="assets/css/uploadify.css">
+	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+	<!--[if lte IE 8]>
+	<script type="text/javascript" src="assets/js/html5.js"></script>s
+	<style>
+	.modal-dialog {width:600px; margin:30px auto;}
+	</style>
+	<![endif]-->
+</head>
+<body>
+	<section id="J_LoginBox" class="J_Box login-mask"></section>
+	<section id="J_MainBox" class="J_Box"></section>
+    <!-- modal -->
+    <div class="modal" id="J_ModalDialog">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close J_ModalClose" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            <h4 class="modal-title" id="J_ModalTitle"></h4>
+          </div>
+          <div class="modal-body" id="J_ModalBody"></div>
+          <div class="modal-footer">
+            <p class="hide J_ModalState"></p>
+            <button type="button" class="btn btn-default J_ModalClose" data-dismiss="modal" langkey="cancel"></button>
+            <button type="button" class="btn btn-primary" id="J_ModalSubmit" langkey="ok"></button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    <!-- loading modal -->
+    <div class="modal" id="J_LoadingModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-body J_ModalBody">
+            <div id="site-loading"></div>
+            <img src="assets/image/loading.gif"/>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    <!-- error modal -->
+    <div class="modal" id="J_ErrorModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close J_ModalClose" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="J_ModalTitle">warning!!!</h4>
+            </div>
+            <div class="modal-body J_ModalBody"></div>
+            <div class="modal-footer hide">
+                <button class="btn btn-warning btn-block J_ErrorModal_Close" langkey="iknow"></button>
+                <button type="button" class="btn btn-default J_ModalClose hide" data-dismiss="modal" langkey="cancel"></button>
+                <button type="button" class="btn btn-primary J_ModalSubmit hide" langkey="ok"></button>
+            </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    <form class="close" method="post" action="/" name="J_NewForm" id="J_NewForm"></form>
+    <img id="loading-dir" class="hide" src="assets/image/loading-dir.gif" />
+
+	<script type="text/javascript" src="assets/js/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="assets/js/common.js"></script>
+	<script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="assets/js/go.js"></script>
+	
+</body>
+</html>
