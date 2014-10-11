@@ -1,12 +1,3 @@
-$.getScript('assets/js/jquery.uploadify.min.js')
-    .done(function() {
-        /* 执行成功后的处理 */
-        Upload.fnInit();
-    })
-    .fail(function() {
-        /* 执行失败后的处理 */
-});
-
 Upload = {
     fnInit: function() {
         // click event: open upload dialog for select files

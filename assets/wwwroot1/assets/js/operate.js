@@ -120,7 +120,15 @@ Operate = {
 
     // 渲染上传插件
     fnRenderUpload: function() {
-        $.getScript('assets/js/upload.js')
+        // $.getScript('assets/js/jquery.uploadify.min.js')
+        //     .done(function() {
+        //         /* 执行成功后的处理 */
+        //         Upload.fnInit();
+        //     })
+        //     .fail(function() {
+        //         /* 执行失败后的处理 */
+        // });
+        $.getScript('assets/js/jquery.uploadify.min.js', 'assets/js/upload.js')
             .done(function() {
                 /* 执行成功后的处理 */
                 $('#J_UploadBox').removeClass('novisiable');

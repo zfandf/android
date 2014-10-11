@@ -35,8 +35,12 @@ Photo = {
     },
     initBucket: function() {
         $('.J_BucketSelect').off('click').on('click', function() {
-            $(this).next('.J_Photos J_Photo').addClass('select');
+            console.log(111);
+            $(this).addClass('selected');
+            // $(this).next('.J_Photos J_Photo').addClass('select');
+            
         });
+        
         $('.J_Bucket').click(function(e) {
             var eBucket = $(this);
             

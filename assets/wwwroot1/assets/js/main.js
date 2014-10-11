@@ -65,7 +65,7 @@ Menu = {
             }                
         }
         Menu.fnInitEvent();
-        List.fnInit();
+        
         Modal.init();
     },
 
@@ -74,6 +74,8 @@ Menu = {
         var eTag = $('.main-lmenu:not(.cover)');
         eTag.unbind();
         eTag.on('click', function(e) {
+            eList.off('click');
+
             $(this).removeClass('main-lmenu-default').addClass('main-lmenu-click');
             if ($(this).siblings().hasClass('main-lmenu-click')) {
                 $(this).siblings().removeClass('main-lmenu-click');
@@ -88,7 +90,8 @@ Menu = {
             Main.setWindowSize();
 
             if (ActionType == 'info') {
-                Menu.getInfo(ActionType);
+                // List.fnInit();
+                // Menu.getInfo(ActionType);
             } else if (ActionType == 'photo') {
                 Menu.renderPhotoList();
             }
