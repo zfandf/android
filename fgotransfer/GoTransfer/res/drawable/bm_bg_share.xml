@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<bitmap xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/toolbar_bg_bmp"
-    android:gravity="top"
-    android:src="@drawable/bg_share"
-    android:tileMode="disabled" >
-
-</bitmap>
