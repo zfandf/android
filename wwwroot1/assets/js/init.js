@@ -1,5 +1,5 @@
 var CountryLanguage = 'en',
-    HOST = 'http://192.168.10.147:9999';
+    HOST = 'http://192.168.10.141:9999';
 var Lang, ActionType;
 var isEnabled = true;
 var eAllBox, eLoginBox, eMainBox;

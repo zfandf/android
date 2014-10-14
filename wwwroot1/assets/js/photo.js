@@ -2,6 +2,16 @@ Photo = {
     bucketTmpl: $('#J_PhotoGroupTmpl').html(),
     photoTmpl: $('#J_PhotoTmpl').html(),
     sortType: 0, // 0 相册， 1 时间
+
+    ePicPreview: $('#J_PicPreview'),
+    ePicImage: $('#J_ShowPicImage'),
+    ePicPath: $('#J_ShowPicPath'),
+    eClosePicPreview: $('#J_ClosePicPreview'),
+    ePicLeft: $('#J_ShowLeftPic'),
+    ePicRight: $('#J_ShowRightPic'),
+    ePicDelete: $('#J_PicDelete'),
+    ePicDownload: $('#J_PicDownload'),
+    
     fnInit: function() {
         Photo.initEvent();
     },
@@ -12,6 +22,10 @@ Photo = {
             Photo.getPhotos();
         });
         $('.J_PhotoCurmb:eq(0)').click();
+
+        Photo.eClosePicPreview.off('click').on('click', function() {
+            Photo.ePicPreview.addClass('hide');
+        });
     },
     getPhotos: function(bucket_id) {
         var oParam = {};
@@ -40,14 +54,14 @@ Photo = {
             ePhotoBox = $('.J_Photos[bucket_id="'+bucket_id+'"]');
             ePhotoBox.html(str);
             Photo.initPhoto(bucket_id);
-
         }
         
     },
     initPhoto: function(bucket_id) {
         var ePhotos = $('.J_Photos[bucket_id="'+bucket_id+'"]');
-        // var eBucketSelect = $('.J_BucketSelect[bucket_id="'+bucket_id+'"]');
+        var ePhotoShows = ePhotos.find('.J_ShowPic');
         var ePhotoSelect = ePhotos.find('.J_SelectPhoto');
+
         ePhotoSelect.off('click').on('click', function() {
             var path = $(this).attr('path');
             var ePhoto = $('.J_Photo[path="'+path+'"]');
@@ -57,7 +71,18 @@ Photo = {
                 ePhoto.addClass('selected');
             }
         });
+
+        ePhotoShows.off('click').on('click', function() {
+            var path = $(this).attr('path');
+            Photo.initPicPreview(path);
+        });
     },
+    initPicPreview: function(path) {
+        Photo.ePicPreview.removeClass('hide');
+        Photo.ePicPath.val(path);
+        Photo.ePicImage.attr('str', HOST + '?action=image&is_thumb=0&path='+path);
+    },
+
     bucketCallback: function(oData) {
         if (oData.photos) {
             var str = $.common.setTemplate(Photo.bucketTmpl, oData.photos);

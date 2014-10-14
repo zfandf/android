@@ -1,11 +1,12 @@
-var eMenuBox, eList, eOperateBtns, eCurmbBox;
+var eMenuBox, eList, eOperateBtns, eCurmbBox, eTemplateBox;
 
 Main = {
     fnInit: function() {
         eMenuBox = $('#J_MenuBox');
         eList = $('#J_FilesList');
         eOperateBtns = $('.J_OperateBtns');
-        eCurmbBox = $('#J_CrumbsBox')
+        eCurmbBox = $('#J_CrumbsBox');
+        eTemplateBox = $('#J_TemplateBox');
 
         eAllBox.addClass('hide');
         eMainBox.removeClass('hide');
@@ -110,16 +111,8 @@ Menu = {
     },
 
     renderPhotoList: function() {
-                console.log(444444)
-        $.getScript('assets/js/photo.js')
-            .done(function() {
-                /* 执行成功后的处理 */
-                Photo.fnInit();
-                console.log(666)
-            })
-            .fail(function() {
-                /* 执行失败后的处理 */
-                console.log(555)
+        $.common.ajaxLoad(eTemplateBox, "template/temp_photo.html", function() {
+            Photo.fnInit();
         });
     }
 };
