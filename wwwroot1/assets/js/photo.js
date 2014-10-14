@@ -11,6 +11,7 @@ Photo = {
     ePicRight: $('#J_ShowRightPic'),
     ePicDelete: $('#J_PicDelete'),
     ePicDownload: $('#J_PicDownload'),
+    ePicName: $('#J_PicName'),
     
     fnInit: function() {
         Photo.initEvent();
@@ -26,12 +27,29 @@ Photo = {
         Photo.eClosePicPreview.off('click').on('click', function() {
             Photo.ePicPreview.addClass('hide');
         });
+        Photo.ePicDelete.off('click').on('click', function() {
+            var path = Photo.ePicPath.val();
+            Operate.fnDelete(path);
+        });
+        Photo.ePicDownload.off('click').on('click', function() {
+            var path = Photo.ePicPath.val();
+            Operate.fnDownFile(path);
+        });
+        Photo.ePicLeft.off('click').on('click', function() {
+            var path = Photo.ePicPath.val();
+            Photo.initPicPreview($('.J_Photo[path="'+path+'"]').prev().attr('path'));
+        });
+        Photo.ePicRight.off('click').on('click', function() {
+            var path = Photo.ePicPath.val();
+            Photo.initPicPreview($('.J_Photo[path="'+path+'"]').next().attr('path'));
+        });
+
     },
     getPhotos: function(bucket_id) {
         var oParam = {};
         bucket_id = bucket_id || 0;
         oParam.data = {
-            action: 'photo',
+            action: 'photos',
             bucket_id: bucket_id,
             sort_type: Photo.sortType
         };
@@ -50,12 +68,14 @@ Photo = {
 
     photoCallback: function(bucket_id, oData) {
         if (oData.photos) {
+            for (var i = 0; i < oData.photos.length; i++) {
+                oData.photos[i].imgSrc = HOST + '?action=image&is_thumb=1&path=' + oData.photos[i].path;
+            }
             var str = $.common.setTemplate(Photo.photoTmpl, oData.photos);
             ePhotoBox = $('.J_Photos[bucket_id="'+bucket_id+'"]');
             ePhotoBox.html(str);
             Photo.initPhoto(bucket_id);
         }
-        
     },
     initPhoto: function(bucket_id) {
         var ePhotos = $('.J_Photos[bucket_id="'+bucket_id+'"]');
@@ -80,7 +100,8 @@ Photo = {
     initPicPreview: function(path) {
         Photo.ePicPreview.removeClass('hide');
         Photo.ePicPath.val(path);
-        Photo.ePicImage.attr('str', HOST + '?action=image&is_thumb=0&path='+path);
+        Photo.ePicImage.attr('src', HOST + '?action=image&is_thumb=0&path=' + path);
+        Photo.ePicName.text($('.J_PhotoName[path="'+path+'"]').val());
     },
 
     bucketCallback: function(oData) {

@@ -38,13 +38,13 @@
         <div id="J_ShowRightPic" class="show-right-pic">
             <span class="glyphicon glyphicon-chevron-right"></span>
         </div>
-        <div node-type="img-wrap" class="img-wrap"><img id="J_ShowPicImage" src="http://d.pcs.baidu.com/thumbnail/5566130128956f6713ea7a186045c176?fid=940611160-250528-11892037219486&amp;time=1413212400&amp;rt=pr&amp;sign=FDTAER-DCb740ccc5511e5e8fedcff06b081203-N0Jz8en6C6L886RczJEoqIQCk04%3D&amp;expires=8h&amp;prisign=amMwnVibYf88f2TB/V4FApSN5rJwOqzRhL6Now25HScufo4OuxITn8BmzguRNe+KOSvL1kr6vNcM9uZjd/7Fbao5rHOtKS4vAcdPT77uxjF528u8yMEWFMKCU55gdZOPF+eThF0cEZhfTvarXQC7Yf9h0nxAXVB22dPQWYhaNwhe3cBnCv8SM4/fe9aSmqP0AC5A8VviSQvcyUtxR5NKO9c4eYtKsUu6EdllWBuOYKVHx6Fp6dXsV7iXC+ZwRxZA&amp;chkv=0&amp;chkbd=0&amp;chkpc=&amp;size=c1280_u800&amp;quality=90" node-type="viewpic-image" id="viewpic-image" class="" style="opacity: 1; transform: rotate(0deg); -webkit-transform: rotate(0deg); top: 0px; left: 279px; width: 349px; height: 456px;"></div>
+        <div node-type="img-wrap" class="img-wrap"><img id="J_ShowPicImage" src="" node-type="viewpic-image" id="viewpic-image" class="" style="opacity: 1; transform: rotate(0deg); -webkit-transform: rotate(0deg); top: 0px; left: 279px; width: 349px; height: 456px;"></div>
     </div>
     <div class="module-showpic-info">
         <span id="J_ClosePicPreview" class="glyphicon glyphicon-remove"></span>
         <span id="J_PicDelete" class="glyphicon glyphicon-trash"></span>
         <span id="J_PicDownload" class="glyphicon glyphicon-download-alt"></span>
-        <p id="J_PicTitle">1.jpg</p>
+        <p id="J_PicName">1.jpg</p>
         <p id="J_PicLasttime">2012-12-02</p>
     </div>
 </div>
@@ -69,6 +69,7 @@
         <div class="photo-mask J_ShowPic" path="{path}"></div>
         <span class="photo-checkbox J_SelectPhoto" path="{path}"><span class="chk-ico"></span></span>
     </div>
-    <img class="img-thumbnail photo-thumbnail" src="assets/image/default_type.png">
+    <input type="hidden" value="{name}" path="{path}" class="J_PhotoName">
+    <img class="img-thumbnail photo-thumbnail" src="{imgSrc}">
 </div>
 </script>

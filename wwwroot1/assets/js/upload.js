@@ -73,7 +73,7 @@ Upload = {
                 
                 $('#J_Upload').uploadify('upload', '*');
                 
-                var left = Modal.eBody.width() + Modal.eBody.offset().left - 110;
+                var left = Modal.eBody.width() + Modal.eBody.offset().left - 10;
                 var top = Modal.eBody.height() + Modal.eBody.offset().top - 16;
                 $('#J_UploadBox').css({left: left+'px', top: top + 'px'});
                 $('#J_UploadBtnText').text(Lang.uploadcontinue);

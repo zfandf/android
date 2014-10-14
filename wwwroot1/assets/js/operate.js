@@ -88,7 +88,8 @@ Operate = {
                 title: Lang.deletebtn,
                 body: Lang.deleteinfo + aPath.length + Lang.filetext + '?',
                 fnSubmit: function() {
-                    Operate.fnDelete();
+                    var path = aPath.join('|');
+                    Operate.fnDelete(path);
                 }
             });
         }
@@ -115,7 +116,7 @@ Operate = {
             Operate[action+'Modal'] = Operate.getTreeModal(action);
         }
         Operate[action+'Modal'].show();
-        DirTree.createNew(GO.oInfo.storages, 'J_DirTree').show();
+        DirTree.createNew(List.oInfo.storages, 'J_DirTree').show();
     },
 
     // 渲染上传插件
@@ -128,7 +129,6 @@ Operate = {
             .done(function() {
                 /* 执行成功后的处理 */
                 $('#J_UploadBox').removeClass('novisiable');
-                console.log(111);
                 Upload.fnInit();
             })
             .fail(function() {
@@ -160,7 +160,7 @@ Operate = {
     },
     // down file
     fnDownFile: function(path) {
-        var url = GO.host+'?action=download&path='+path;
+        var url = HOST +'?action=download&path='+path;
         $('body').append('<a id="J_DownloadZip" href="'+url+'" download="'+url+'">');
         document.getElementById('J_DownloadZip').click();
         $('#J_DownloadZip').remove();
@@ -239,13 +239,7 @@ Operate = {
         $.common.ajax(oParam);
     },
     /* ajax request for delete files */
-    fnDelete: function() {
-        var aPath = [];
-        $('#J_FilesList .defaultstyle.selected').each(function() {
-            var path = $(this).attr('path');
-            aPath.push(path);
-        })
-        var path = aPath.join('|');
+    fnDelete: function(path) {
         var oParam = {};
         oParam.data = {
             action: 'delete',
@@ -258,7 +252,7 @@ Operate = {
                 window.setTimeout(function() {
                     $.common.oInfoModal.hide();
                 }, 2000);
-                List.fetchList($('.J_CrumbPath:last').attr('path'), true);
+                // List.fetchList($('.J_CrumbPath:last').attr('path'), true);
             }
         }
         $.common.ajax(oParam);

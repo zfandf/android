@@ -96,7 +96,7 @@ Menu = {
                 if (!eList.hasClass('list') && !eList.hasClass('grid')) {
                     eList.addClass('list');
                 }
-            } else if (ActionType == 'photo') {
+            } else if (ActionType == 'photos') {
                 Menu.renderPhotoList();
                 eList.removeClass('list grid');
             }
