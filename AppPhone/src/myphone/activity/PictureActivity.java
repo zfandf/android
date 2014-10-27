@@ -3,13 +3,16 @@ package myphone.activity;
 import java.util.ArrayList;
 import java.util.List;
 
-import android.annotation.SuppressLint;
+import myphone.utils.Image;
+import android.app.Activity;
 import android.content.Context;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
+import android.provider.MediaStore;
+import android.support.v4.widget.CursorAdapter;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -20,7 +23,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class PictureActivity extends ActionBarActivity {
+public class PictureActivity extends Activity {
 
 	private ListView mListView;
 	
@@ -49,31 +52,34 @@ public class PictureActivity extends ActionBarActivity {
 	}
 	
 	private void initPictureList() {
-		
-//		for (int i = 0; i < 1000; i++) {
-//			Picture p = new Picture("hahaha", R.drawable.ic_reception_app_press);
+		Cursor c = getContentResolver().query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, null, null, null, null);
+//		for (int i = 0; i < 1; i++) {
+//			Picture p = new Picture("hahaha", R.drawable.ic_bigimg);
 //			pictureList.add(p);
 //		}
 	}
 	
+	public class PictureCusorAdapter extends CursorAdapter {
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.picture, menu);
-		return true;
-	}
-
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		// Handle action bar item clicks here. The action bar will
-		// automatically handle clicks on the Home/Up button, so long
-		// as you specify a parent activity in AndroidManifest.xml.
-		int id = item.getItemId();
-		if (id == R.id.action_settings) {
-			return true;
+		private Context mContext;
+		private Cursor mCursor;
+		
+		public PictureCusorAdapter(Context context, Cursor c, int flags) {
+			super(context, c, flags);
+			mContext = context;
+			mCursor = c;
 		}
-		return super.onOptionsItemSelected(item);
+
+		@Override
+		public void bindView(View view, Context context, Cursor cursor) {
+			
+		}
+
+		@Override
+		public View newView(Context context, Cursor cursor, ViewGroup parent) {
+			return null;
+		}
+		
 	}
 	
 	public class PictureAdapter extends ArrayAdapter<Picture> {
@@ -85,7 +91,6 @@ public class PictureActivity extends ActionBarActivity {
 			resourceId = resource;
 		}
 		
-		@SuppressLint("ViewHolder")
 		@Override
 		public View getView(int position, View convertView, ViewGroup parent) {
 			Picture picture = getItem(position);
@@ -102,16 +107,16 @@ public class PictureActivity extends ActionBarActivity {
 				viewHolder = (ViewHolder)view.getTag();
 			}
 			
-			viewHolder.imageView.setImageResource(picture.getImageId());
+			Bitmap bitmap = Image.getBitmapImage(getResources(), picture.getImageId(), 100, 100);
+			viewHolder.imageView.setImageBitmap(bitmap);
 			viewHolder.nameView.setText(picture.getName());
 			return view;
 		}
-		
-		class ViewHolder {
-			ImageView imageView;
-			TextView nameView;
-		}
-		
+	}
+	
+	class ViewHolder {
+		ImageView imageView;
+		TextView nameView;
 	}
 	
 	public class Picture {
