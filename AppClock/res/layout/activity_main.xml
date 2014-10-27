@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+    
+    <!-- 线性布局 -->
+
+	<LinearLayout
+	    android:layout_width="match_parent"
+	    android:layout_height="match_parent"
+	    android:orientation="vertical"
+	    android:paddingBottom="50dp" >
+	    
+		<TextView
+		    android:id="@+id/tv_main_title"
+		    android:layout_width="fill_parent"
+		    android:layout_height="wrap_content"
+		    android:padding="20dp"
+		    android:textSize="24sp"
+		    android:text="@string/tv_main_title_text" />
+	
+		<Button
+		    android:id="@+id/tv_main_btn_allclock"
+		    android:layout_width="match_parent"
+		    android:layout_height="wrap_content"
+		    android:scrollbars="vertical|horizontal"
+		    android:text="@string/tv_main_btn_allclock_text" />
+	
+	</LinearLayout>
+	
+	<Button
+	    android:id="@+id/tv_main_btn_addclock"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:layout_alignParentBottom="true"
+	    android:text="@string/tv_main_btn_addclock_text" />
+    
+</RelativeLayout>
+

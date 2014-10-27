@@ -1,0 +1,8 @@
+<resources>
+
+    <string name="app_name">App1</string>
+    <string name="connection_to_wifi">连接 WIFI</string>
+    <string name="ip_error">IP 地址解析错误</string>
+    <string name="waitting">请等待</string>
+
+</resources>
