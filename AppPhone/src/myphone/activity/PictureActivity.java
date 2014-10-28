@@ -4,14 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import myphone.utils.Image;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
-import android.database.Cursor;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.provider.MediaStore;
-import android.support.v4.widget.CursorAdapter;
+import android.support.v4.util.LruCache;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,14 +24,29 @@ import android.widget.Toast;
 
 public class PictureActivity extends Activity {
 
+	private static final String TAG = "main";
 	private ListView mListView;
 	
 	private List<Picture> pictureList = new ArrayList<Picture>();
 	
+	private LruCache<String, Bitmap> mMemoryCache;
+	
+	@SuppressLint("NewApi")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_picture);
+		
+		final int maxMemory = (int)(Runtime.getRuntime().maxMemory() / 1024);
+		final int cacheSize = maxMemory / 8;
+		Log.i(TAG, "maxMemory=" + maxMemory + ", cacheSize=" + cacheSize);
+		
+		mMemoryCache = new LruCache<String, Bitmap>(cacheSize) {
+			@Override
+			protected int sizeOf(String key, Bitmap bitmap) {
+				return bitmap.getByteCount() / 1024;
+			}
+		};
 		
 		initPictureList();
 		PictureAdapter picAdapter = new PictureAdapter(this, R.layout.item_picture, pictureList);
@@ -51,37 +65,24 @@ public class PictureActivity extends Activity {
 		});
 	}
 	
+	private void addBitmapToMemCache(String key, Bitmap bitmap) {
+		if (getBitmapFromMemCache(key) == null) {
+			mMemoryCache.put(key, bitmap);
+		}
+	}
+	
+	private Bitmap getBitmapFromMemCache(String key) {
+		return mMemoryCache.get(key);
+	}
+	
 	private void initPictureList() {
-		Cursor c = getContentResolver().query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, null, null, null, null);
-//		for (int i = 0; i < 1; i++) {
-//			Picture p = new Picture("hahaha", R.drawable.ic_bigimg);
-//			pictureList.add(p);
-//		}
+//		Cursor c = getContentResolver().query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, null, null, null, null);
+		for (int i = 0; i < 1; i++) {
+			Picture p = new Picture("hahaha", R.drawable.ic_bigimg);
+			pictureList.add(p);
+		}
 	}
-	
-	public class PictureCusorAdapter extends CursorAdapter {
-
-		private Context mContext;
-		private Cursor mCursor;
 		
-		public PictureCusorAdapter(Context context, Cursor c, int flags) {
-			super(context, c, flags);
-			mContext = context;
-			mCursor = c;
-		}
-
-		@Override
-		public void bindView(View view, Context context, Cursor cursor) {
-			
-		}
-
-		@Override
-		public View newView(Context context, Cursor cursor, ViewGroup parent) {
-			return null;
-		}
-		
-	}
-	
 	public class PictureAdapter extends ArrayAdapter<Picture> {
 		
 		private int resourceId;
