@@ -3,13 +3,13 @@ package myphone.activity;
 import java.util.ArrayList;
 import java.util.List;
 
-import myphone.utils.Image;
-import android.annotation.SuppressLint;
+import myphone.utils.ImageCache;
+import myphone.utils.ImageUtil;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v4.util.LruCache;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,30 +23,21 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class PictureActivity extends Activity {
-
+	
 	private static final String TAG = "main";
 	private ListView mListView;
 	
+	private static ImageCache sImageCache;
+	
 	private List<Picture> pictureList = new ArrayList<Picture>();
 	
-	private LruCache<String, Bitmap> mMemoryCache;
-	
-	@SuppressLint("NewApi")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_picture);
 		
-		final int maxMemory = (int)(Runtime.getRuntime().maxMemory() / 1024);
-		final int cacheSize = maxMemory / 8;
-		Log.i(TAG, "maxMemory=" + maxMemory + ", cacheSize=" + cacheSize);
-		
-		mMemoryCache = new LruCache<String, Bitmap>(cacheSize) {
-			@Override
-			protected int sizeOf(String key, Bitmap bitmap) {
-				return bitmap.getByteCount() / 1024;
-			}
-		};
+		sImageCache = ImageCache.getInstance(this);
+		ImageUtil.init(this, ImageUtil.getBitmapImage(getResources(), R.drawable.ic_wallpaper, 100, 100));
 		
 		initPictureList();
 		PictureAdapter picAdapter = new PictureAdapter(this, R.layout.item_picture, pictureList);
@@ -63,21 +54,26 @@ public class PictureActivity extends Activity {
 				Toast.makeText(PictureActivity.this, picture.getName(), Toast.LENGTH_SHORT).show();
 			}
 		});
+		
 	}
 	
-	private void addBitmapToMemCache(String key, Bitmap bitmap) {
-		if (getBitmapFromMemCache(key) == null) {
-			mMemoryCache.put(key, bitmap);
+	class BitmapWorkerTask extends AsyncTask<Integer, Void, Bitmap> {
+
+		@Override
+		protected Bitmap doInBackground(Integer... resIds) {
+			final String imgKey = String.valueOf(resIds[0]);
+			
+			Bitmap bitmap = sImageCache.getBitmapFromCache(imgKey);
+			if (bitmap == null) {
+				bitmap = ImageUtil.getBitmapImage(getResources(), resIds[0], 100, 100);
+			}
+			return bitmap;
 		}
-	}
-	
-	private Bitmap getBitmapFromMemCache(String key) {
-		return mMemoryCache.get(key);
 	}
 	
 	private void initPictureList() {
 //		Cursor c = getContentResolver().query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, null, null, null, null);
-		for (int i = 0; i < 1; i++) {
+		for (int i = 0; i < 500; i++) {
 			Picture p = new Picture("hahaha", R.drawable.ic_bigimg);
 			pictureList.add(p);
 		}
@@ -108,7 +104,14 @@ public class PictureActivity extends Activity {
 				viewHolder = (ViewHolder)view.getTag();
 			}
 			
-			Bitmap bitmap = Image.getBitmapImage(getResources(), picture.getImageId(), 100, 100);
+			final String imageKey = String.valueOf(picture.getImageId());
+			Bitmap bitmap = sImageCache.getBitmapFromCache(imageKey);
+			if (bitmap == null) {
+				bitmap = ImageUtil.getBitmapImage(getResources(), picture.getImageId(), 100, 100);
+				sImageCache.addBitmapToCache(imageKey, bitmap);
+			} else {
+				Log.i(TAG, "bitmap not null");
+			}
 			viewHolder.imageView.setImageBitmap(bitmap);
 			viewHolder.nameView.setText(picture.getName());
 			return view;

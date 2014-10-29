@@ -1,14 +1,12 @@
 package myphone.activity;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import myphone.utils.Image;
+import myphone.utils.ImageUtil;
 import android.app.Activity;
 import android.content.Context;
 import android.database.Cursor;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v4.widget.CursorAdapter;
@@ -21,7 +19,6 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class PictureCursorActivity extends Activity {
 
@@ -107,7 +104,7 @@ public class PictureCursorActivity extends Activity {
 				viewHolder = (ViewHolder)view.getTag();
 			}
 			
-			Bitmap bitmap = Image.getBitmapImage(getResources(), picture.getImageId(), 100, 100);
+			Bitmap bitmap = ImageUtil.getBitmapImage(getResources(), picture.getImageId(), 100, 100);
 			viewHolder.imageView.setImageBitmap(bitmap);
 			viewHolder.nameView.setText(picture.getName());
 			return view;

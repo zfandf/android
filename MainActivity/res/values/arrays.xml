@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <string-array name="send_file_types">
+        <item>发送图片</item>
+        <item>发送视频</item>
+        <item>发送音乐</item>
+        <item>发送应用</item>
+        <item>发送文件</item>
+    </string-array>
+    
+    <string-array name="guide_shares">
+        <item>短信</item>
+        <item>邮件</item>
+        <item>Facebook</item>
+        <item>微信好友</item>
+        <item>微博</item>
+        <item>Twitter</item>
+    </string-array>
+    
+</resources>
