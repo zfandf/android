@@ -4,12 +4,8 @@ gen/
 doc/
 .settings/
 .metadata/
-/GoTransfer/
-/GoTransferSimplest/
-/gridlayout_v7/
-/library_switch_backport/
-/library_umeng_feedback/
-/sdk/
+/agotransfer/
+/agoshare/
 *.DS_Store
 *.classpath
 */lint.xml
