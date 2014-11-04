@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title langkey="title" name="langkey">GO2Share</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Expires" content="0"/>
+    <meta http-equiv="Cache-Control" content="no-cache"/>
+    <meta http-equiv="Pragma" content="no-cache"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+    <meta name="description" content=""/>
+    <meta content="telephone=no" name="format-detection" />
+    <script type="text/javascript" src="language.js"></script>
+    <script type="text/javascript">
+    var supportLang = {
+        'en': {
+            'page_title': 'GO2Share',
+            'go_share': 'GO2Share',
+            'go_transfer': 'GO Transfer',
+            'share_app': 'Experience Advance Share',
+            'instant_share': 'Instant Share',
+            'from': 'From',
+            'waiting': 'waiting...',
+            'no_files': 'No files selected!!!',
+            'duration': 'Duration',
+            'size': 'Size',
+            'request_error': 'Request Error!',
+            'format_error': 'Data format is error!'
+        },
+        'zh-cn': {
+            'page_title': 'GO2Share',
+            'go_share': 'GO2Share',
+            'go_transfer': 'GO 快传',
+            'share_app': '推荐应用',
+            'instant_share': '即时分享',
+            'from': '来自',
+            'waiting': '等待中...',
+            'no_files': '没有文件被选中!!!',
+            'duration': '时长',
+            'size': '大小',
+            'request_error': '请求错误!',
+            'format_error': '数据格式错误!'
+        }
+    };
+    var _dom = document;
+    // 获取系统语言, 并转换为小写
+    var lan = (navigator.userLanguage || navigator.language).toLowerCase();
+    var Lang = supportLang[lan] || supportLang['en'];// 获取语言对应 js 对象
+    </script>
+
+    <style type="text/css">
+    html, body, div, p, img {padding:0; margin:0; border:0;}
+    a {text-decoration:none;}
+    body {width:100%; margin:auto; min-width:280px; font-family:Helvetica, STHeiti STXihei, Microsoft JhengHei, Microsoft YaHei, Tohoma, Arial; font-size:16px; position:relative;}
+
+    .fl {float:left;}
+    .fr {float:right;}
+    
+    .container {padding:0 0 5px;}
+    .group-name {padding:10px; background:#f2f2f2; color:#292929; font-size:16px;}
+
+    .item-link {display:block;}
+    .item {padding:5px; padding-left:80px; position:relative; height:70px; border-bottom:1px solid #d8d8d8;}
+
+    .f-thumb {width:70px; height:70px; margin:auto; background-color:#f2f2f2; position:absolute; left:5px;}
+    .ce-imgbox {width:100%; height:100%; position:relative; text-align:center;}
+    .ce-img {margin:auto; max-width:100%; max-height:100%; position:absolute; top:0; bottom:0; left:0; right:0;}
+
+    .touch {background:#ebf4c9;}
+    .item:active {background:#ebf4c9;}
+    .f-info {line-height:20px;}
+    .f-name {height:23px; overflow:hidden; margin:5px 0 0; text-decoration:underline;color:#5e5e5e; font-size:16px;}
+    .f-duration, .f-size {color:#9a9a9a; font-size:14px;}
+
+    .header {background-color:#fff; height:30px; padding:10px;}
+    .d-apks {font-size:16px;}
+    .d-self {display:inline-block; background:url(?action=image&path=icon) no-repeat center left; background-size:30px; text-indent:35px; height:30px; line-height:30px; text-decoration:underline; color:#068df2;}
+    .d-trans {display:inline-block; padding:0 5px; background-color:#068df2; height:30px; line-height:30px; border-radius:3px; color:#fff;}
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="d-apks">
+            <a class="fl" id="J_DownSelf" target="_self" tag="myself" href="?action=download_apk&tag=myself"><span class="d-self" name="langkey" langkey="go_share">GO Share</span></a>
+            <a class="fr" id="J_DownTrans" target="_self" tag="gotransfer" href="https://play.google.com/store/apps/details?id=cn.m15.gotransfer"><span class="d-trans" name="langkey" langkey="go_transfer">GO Transfer</span></a>
+        </div>
+    </div>
+    <div class="container" name="langkey" id="J_Container" langkey="waiting">   Waiting...</div>
+    <script type="text/javascript">
+
+    // 使用 ID 获取元素
+    function getElmById(id) {
+        return _dom.getElementById(id);
+    }
+
+    var elmDownTrans = getElmById("J_DownTrans");
+    var elmDownSelf = getElmById('J_DownSelf');
+    var elmContainer = getElmById("J_Container");
+    var ePhoneInfo = getElmById('J_PhoneInfo');
+
+    var self_download_url = '?action=download_apk&tag=myself';
+    var itemTmpl =  '<div class="item">'+
+                        '<div class="f-thumb">'+
+                            '<p class="ce-imgbox"><img class="ce-img" org-src="{image}"></p>'+
+                        '</div>'+
+                        '<div class="f-info">'+
+                            '<p class="f-name">{name}</p>'+
+                            '<p class="f-duration">{duration}</p>'+
+                            '<p class="f-size">{size}</p>'+
+                        '</div>'+
+                    '</div>';
+                    
+    window.onload = function() {
+        initPage();
+        // loadList1();// 测试数据
+        loadList();// 正式数据
+    };
+
+    function loadList() {
+        var oParam = {
+            isAsync: true,
+            url: "?action=list&tag=list&r=" + (new Date().getTime())
+        };
+        sendXHR(oParam, function(oData) {
+            listSuccess(oData);
+        }, function(errorMsg) {
+            listError(errorMsg);
+        });
+    }
+    // function loadList1() {
+    //     var oData = {
+    //         code: 0,
+    //         is_test: true,
+    //         model: 'A001 OnePlus',
+    //         data: [{
+    //             group_name: '文件',
+    //             items: [{
+    //                 path: 'http://img.wdjimg.com/mms/icon/v1/6/58/c84d53f67b4120febc29ebcaadefc586_256_256.png',
+    //                 name: '快的打车',
+    //                 size: '10M'
+    //             },{
+    //                 path: 'http://img.wdjimg.com/mms/icon/v1/2/fd/453c5c37cc3d366d32ecee33e1247fd2_48_48.png',
+    //                 name: 'QQ',
+    //                 size: '10M'
+    //             },{
+    //                 path: 'http://img.wdjimg.com/mms/icon/v1/f/6a/fdd03595b0c2315159c955d967ce86af_48_48.png',
+    //                 name: '大众点评',
+    //                 size: '10M'
+    //             },{
+    //                 path: 'http://img.wdjimg.com/mms/icon/v1/6/58/c84d53f67b4120febc29ebcaadefc586_256_256.png',
+    //                 name: '快的打车',
+    //                 size: '10M'
+    //             },{
+    //                 path: 'http://img.wdjimg.com/mms/icon/v1/2/fd/453c5c37cc3d366d32ecee33e1247fd2_48_48.png',
+    //                 name: 'QQ',
+    //                 size: '10M'
+    //             },{
+    //                 path: 'http://img.wdjimg.com/mms/icon/v1/f/6a/fdd03595b0c2315159c955d967ce86af_48_48.png',
+    //                 name: '大众点评',
+    //                 size: '10M'
+    //             },{
+    //                 path: 'http://img.wdjimg.com/mms/icon/v1/6/58/c84d53f67b4120febc29ebcaadefc586_256_256.png',
+    //                 name: '快的打车',
+    //                 size: '10M',
+    //                 duration: '10分钟11秒'
+    //             },{
+    //                 path: 'http://img.wdjimg.com/mms/icon/v1/2/fd/453c5c37cc3d366d32ecee33e1247fd2_48_48.png',
+    //                 name: 'QQ',
+    //                 size: '10M'
+    //             },{
+    //                 path: 'http://img.wdjimg.com/mms/icon/v1/f/6a/fdd03595b0c2315159c955d967ce86af_48_48.png',
+    //                 name: '大众点评',
+    //                 size: '10M'
+    //             }]
+    //         }]
+    //     };
+    //     listSuccess(JSON.stringify(oData));
+    // }
+
+    // 页面元素初始化
+    function initPage() {
+        /*
+         * 初始化页面国际化语言
+         */
+        var langElms = _dom.getElementsByName('langkey');
+        for (var i = 0; i < langElms.length; i++) {
+            var elm = langElms[i];
+            var langkey = elm.getAttribute('langkey');
+            if (Lang[langkey]) {
+                elm.innerText = Lang[langkey];
+            }
+        }
+        // 添加事件
+        addItemEvent(elmDownTrans);
+        addItemEvent(elmDownSelf);
+    }
+    // 为元素添加事件， 触摸颜色改变
+    function addTouchEvent(elm) {
+        addEvent(elm, 'touchend', function() {
+            this.className = '';
+        });
+        addEvent(elm, 'touchstart', function() {
+            this.className = 'touch';
+        });
+    }
+    // 为列表元素添加点击下载统计
+    function addItemEvent(elm) {
+        // addTouchEvent(elm);
+        addEvent(elm, 'click', function() {
+            var tag = this.getAttribute('tag');
+            var path = this.getAttribute('path');
+            var url = '?action=click_download&tag='+tag;
+            if (path != null) {
+                url += '&path=' + path;
+            }
+            var oParam = {
+                isAsync: true,
+                url: url
+            };
+            sendXHR(oParam);
+        });
+    }
+
+    // 为元素添加事件
+    function addEvent(elm, evType, fn) {
+        if (elm.addEventListener){
+            elm.addEventListener(evType, fn, false);// DOM2.0
+        } else if (elm.attachEvent) {
+            elm.attachEvent('on' + evType, fn);// IE5+
+        } else {
+            elm['on' + evType] = fn;// DOM 0
+        }
+    }
+
+    function listError(errorMsg) {
+        elmContainer.innerHTML = errorMsg;
+    }
+
+    function listSuccess(responseText) {
+        elmContainer.innerHTML = '';
+        var oData;
+        try {
+            oData = JSON.parse(responseText);
+        } catch (e) {
+            try {
+                oData = eval("(" + responseText + ")");
+            } catch (e) {
+                listError(Lang.format_error + ", result=" + responseText);
+                return;
+            }
+        }
+        if (oData.path) {
+            elmDownTrans.href = "?action=download_apk&tag=gotransfer&path=" + oData.path;
+        }
+        if (oData.code != 0 || !oData.data || oData.data.length == 0) {
+            listError(Lang.no_files);
+            return;
+        }
+        for (var i = 0; i < oData.data.length; i++) {
+            var oGroup = oData.data[i];
+            if (!oGroup.items || oGroup.items.length == 0) {
+                listError(Lang.no_files);
+                return;
+            }
+            var eGroup = _dom.createElement('p');
+            eGroup.className = 'group-name';
+            eGroup.innerText = oGroup.group_name;
+            elmContainer.appendChild(eGroup);
+            for (var j = 0; j < oGroup.items.length; j++) {
+                var oItem = oGroup.items[j];
+                var duration = /[1-9]/.test(oItem.duration) ? Lang.duration + ": " + oItem.duration : '',
+                    size = oItem.size ?  Lang.size + ": " + oItem.size : '',
+                    image = "?action=image&path=" + encodeURIComponent(oItem.path),
+                    path = "?action=download&tag=share&path=" + encodeURIComponent(oItem.path);
+                if (oData.is_test) {
+                    image = oItem.path,
+                    path = oItem.path;
+                }
+                var eItem = _dom.createElement('a');
+                eItem.className = 'item-link';
+                eItem.href = path;
+                eItem.target = '_self';
+                eItem.setAttribute('tag', 'share');
+                eItem.setAttribute('path', oItem.path);
+                eItem.innerHTML = itemTmpl.replace("{image}", image)
+                                        .replace("{name}", oItem.name)
+                                        .replace("{duration}", duration)
+                                        .replace("{size}", size)
+                                        .replace("{path}", path);
+                addItemEvent(eItem);
+                elmContainer.appendChild(eItem);
+            }
+        }
+        loadAllImage();
+    }
+
+    //加载所有图片
+    function loadAllImage() {
+        var totalImageCount = 0, loadImageCount = 0;
+
+        var images = elmContainer.getElementsByTagName('img');
+        totalImageCount = images.length;
+        for (var i = 0; i < totalImageCount; i++) {
+            loadImage(images[i]);        
+        }
+
+        function loadImage(elm) {
+            var img = new Image();
+            img.src = elm.getAttribute('org-src');
+            img.onload = function() {
+                elm.src = img.src;
+            };
+            img.onerror = function() {
+                // elm.getAttribute('org-src');
+                // elm.src = "?action=image&path=icon";
+                elm.style.opacity = ".3";
+            }
+        }
+    }
+
+    // 发送ajax请求
+    function sendXHR(oParam, successFunc, errorFunc) {
+        var method = oParam.method || 'GET';
+        var isAsync = oParam.isAsync;
+        var url = oParam.url || '';
+        var params = '';
+        if (oParam.data) {
+            var data = [];
+            for (x in oParam.data) {
+                data.push(x + "=" + encodeURIComponent(oParam.data[x]));
+            }
+            params = data.join('&');
+        }
+        if (params != '' && method.toLowerCase() == 'get') {
+            url += (url.indexOf('?') == -1 ? '?' : '&') + params;
+        }
+
+        var xhr;
+        if (window.XMLHttpRequest) {
+            xhr = new XMLHttpRequest();
+            xhr.open(method, url, isAsync);
+        } else if (typeof XDomainRequest != "undefined") {
+            xhr = new XDomainRequest();
+            xhr.open(method, url);
+        } else {
+            errorFunc(Lang.request_error);
+            return;
+        }
+
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState == 4) {
+                if ((xhr.status >=200 && xhr.status < 300) || xhr.status == 304) {
+                    if (successFunc) {
+                        successFunc(xhr.responseText);
+                    }
+                } else {
+                    if (errorFunc) {
+                        errorFunc(Lang.request_error); 
+                    }
+                }
+            }
+        };
+        if (method.toLowerCase() == 'post' && oParam.data) {
+            xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+            xhr.send(params);
+        } else {
+            xhr.send();    
+        }
+    }
+    </script>
+</body>
+</html>
