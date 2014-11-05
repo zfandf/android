@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 
 import myphone.utils.MyPhoneAdapter;
-
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
@@ -19,8 +18,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
-
-import myphone.activity.R;
 
 public class AppListActivity extends ActionBarActivity {
 

@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import myphone.utils.MyPhoneAdapter;
-
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -22,8 +21,6 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.TextView;
-
-import myphone.activity.R;
 
 public class FileListActivity extends ActionBarActivity implements OnClickListener {
 

@@ -2,13 +2,11 @@ package myphone.utils;
 
 import java.lang.ref.WeakReference;
 
-import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
-import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.ImageView;
 
@@ -19,28 +17,85 @@ import android.widget.ImageView;
  */
 public class ImageUtil {
 	
-	private static Context sContext;
-	private static Bitmap sPlaceHolderBitmap;
-	
 	private ImageUtil() {}
 	
-	public static void init(Context context, Bitmap holderBitmap) {
-		sContext = context;
-		sPlaceHolderBitmap = holderBitmap;
+	// cancel worktask
+	public static boolean cancelPotentialWork(String path, ImageView imageView) {
+		final BitmapWorkerTask bitmapWorkerTask = getBitmapWorkerTask(imageView);
+		
+		if (bitmapWorkerTask != null) {
+			final String bitmapData = bitmapWorkerTask.data;
+			// if bitmapData is yes set or it differs from the new data
+			if (bitmapData == null  || bitmapData.equals(path)) {
+				// cancel previous task
+				bitmapWorkerTask.cancel(true);
+			} else {
+				// the same work is already in progress
+				return false;
+			}
+		}
+		// No task associated with the ImageView, or an existing task was canceled
+		return true;
+	}
+	
+	public static BitmapWorkerTask getBitmapWorkerTask(ImageView imageView) {
+		if (imageView != null) {
+			final Drawable drawable = imageView.getDrawable();
+			if (drawable instanceof AsyncDrawable) {
+				final AsyncDrawable asyncDrawable = (AsyncDrawable)drawable;
+				return asyncDrawable.getBitmapWorkerTask();
+			}
+		}
+		return null;
+	}
+	
+	static class AsyncDrawable extends BitmapDrawable {
+		private final WeakReference<BitmapWorkerTask> bitmapWorkerTaskReference;
+		
+		public AsyncDrawable(Resources res, Bitmap bitmap, BitmapWorkerTask bitmapWorkerTask) {
+			super(res, bitmap);
+			bitmapWorkerTaskReference = new WeakReference<BitmapWorkerTask>(bitmapWorkerTask);
+		}
+		
+		public BitmapWorkerTask getBitmapWorkerTask() {
+			return bitmapWorkerTaskReference.get();
+		}
 	}
 	
 	/*
-	 * 根据参数获得位图
+	 * 获得bitmap, 根据图片途径
+	 */
+	public static Bitmap getBitmapImage(String path, int reqWidth, int reqHeight) {
+		BitmapFactory.Options options = new BitmapFactory.Options();
+		options.inJustDecodeBounds = true;
+		BitmapFactory.decodeFile(path, options);
+
+		options.inSampleSize = getSampleSize(options, reqWidth, reqHeight);
+		options.inJustDecodeBounds = false;
+
+		Bitmap bitmap = null;
+		try {
+			bitmap = BitmapFactory.decodeFile(path, options);
+			return Bitmap.createScaledBitmap(bitmap, reqWidth, reqHeight, true);
+		} catch (Exception e) {
+			Log.i("main", e.getMessage() + "");
+		}
+		return bitmap;
+	}
+	
+	/*
+	 * 获得bitmap, 根据资源 ID
 	 */
 	public static Bitmap getBitmapImage(Resources resources, int resId, int reqWidth, int reqHeight) {
-		Log.i("main", "getBitmapImage");
 		BitmapFactory.Options options = new BitmapFactory.Options();
 		options.inJustDecodeBounds = true;
 		BitmapFactory.decodeResource(resources, resId, options);
 
 		options.inSampleSize = getSampleSize(options, reqWidth, reqHeight);
 		options.inJustDecodeBounds = false;
-		return BitmapFactory.decodeResource(resources, resId, options);
+		
+		Bitmap bitmap = BitmapFactory.decodeResource(resources, resId, options);
+		return Bitmap.createScaledBitmap(bitmap, reqWidth, reqHeight, true);
 	}
 	
 	/*
@@ -59,84 +114,5 @@ public class ImageUtil {
 			}
 		}
 		return inSampleSize;
-	}
-	
-	private class BitmapTask extends AsyncTask<Integer, Void, Bitmap> {
-
-		private final WeakReference<ImageView> mImageViewReference;
-		private int data = 0;
-		
-		public BitmapTask(ImageView imageView) {
-			mImageViewReference = new WeakReference<ImageView>(imageView);
-		}
-		
-		@Override
-		protected Bitmap doInBackground(Integer... resIds) {
-			data = resIds[0];
-			return getBitmapImage(sContext.getResources(), data, 1000, 1000);
-		}
-		
-		@Override
-		protected void onPostExecute(Bitmap bitmap) {
-			if (isCancelled()) {
-				bitmap = null;
-			}
-			if (mImageViewReference != null && bitmap != null) {
-				final ImageView imageView = mImageViewReference.get();
-				final BitmapTask bitmapTask = getBitmapTask(imageView);
-				if (this == bitmapTask && imageView != null) {
-					imageView.setImageBitmap(bitmap);
-				}
-			}
-		}
-		
-	}
-
-	private static class AsyncDrawable extends BitmapDrawable {
-		
-		private final WeakReference<BitmapTask> bitmapTaskReference;
-		
-		public AsyncDrawable(Resources res, Bitmap bitmap, BitmapTask bitmapTask) {
-			super(res, bitmap);
-			bitmapTaskReference = new WeakReference<BitmapTask>(bitmapTask);
-		}
-		
-		public BitmapTask getBitmapTask() {
-			return bitmapTaskReference.get();
-		}		
-		
-	}
-	
-	public void loadBitmap(int resId, ImageView imageView) {
-		if (cancelPotentialWork(resId, imageView)) {
-			final BitmapTask task = new BitmapTask(imageView);
-			final AsyncDrawable asyncDrawable = new AsyncDrawable(sContext.getResources(), sPlaceHolderBitmap, task);
-			imageView.setImageDrawable(asyncDrawable);
-			task.execute(resId);
-		}
-	}
-	
-	private static boolean cancelPotentialWork(int data, ImageView imageView) {
-		final BitmapTask bitmapTask = getBitmapTask(imageView);
-		if (bitmapTask != null) {
-			final int bitmapData = bitmapTask.data;
-			if (bitmapData == 0 || bitmapData != data) {
-				bitmapTask.cancel(true);
-			} else {
-				return false;
-			}
-		}
-		return true;
-	}
-	
-	private static BitmapTask getBitmapTask(ImageView imageView) {
-		if (imageView != null) {
-			final Drawable drawable = imageView.getDrawable();
-			if (drawable instanceof AsyncDrawable) {
-				final AsyncDrawable asyncDrawable = (AsyncDrawable)drawable;
-				return asyncDrawable.getBitmapTask();
-			}
-		}
-		return null;
 	}
 }
