@@ -8,14 +8,12 @@ import myphone.utils.ImageUtil;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.Resources;
-import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -66,9 +64,10 @@ public class PictureActivity extends Activity {
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_picture_list);
+		
+		ImageCache.setInstance(this);// 初始化ImageCache
 		
 		mPlaceHolerBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher);
 		mAdapter = new ImageAdapter(this, redIds, R.layout.item_picture, R.id.picture_image, R.id.picture_text);
@@ -133,14 +132,14 @@ public class PictureActivity extends Activity {
 			data = resIds[0];
 			final String imageKey = String.valueOf(data);
 			Bitmap bitmap;
-			bitmap = ImageCache.getInstance(getApplicationContext()).getBitmapFromCache(imageKey);
+			bitmap = ImageCache.getInstance().getBitmapFromCache(imageKey);
 			if (bitmap != null) {
 				Log.i(TAG, "bitmap is cache");
 				return bitmap;
 			}
 			Log.i(TAG, "bitmap no cache");
 			bitmap = ImageUtil.getBitmapImage(mResources, data, 100, 100);
-			ImageCache.getInstance(getApplicationContext()).addBitmapToCache(imageKey, bitmap);
+			ImageCache.getInstance().addBitmapToCache(imageKey, bitmap);
 			return bitmap;
 		}
 		

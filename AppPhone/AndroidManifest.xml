@@ -35,8 +35,12 @@
             android:name=".ContactsActivity"
             android:label="@string/title_activity_contacts" >
         </activity>
+        <activity 
+            android:name="myphone.picture.PictureViewActivity"
+            android:label="@string/title_activity_picture">
+        </activity>
         <activity
-            android:name="myphone.picture.ImageActivity"
+            android:name="picture.cursor.ImageActivity"
             android:label="@string/title_activity_picture" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -44,7 +48,7 @@
             </intent-filter>
         </activity>
         <activity 
-            android:name="myphone.picture.PictureViewActivity"
+            android:name="picture.cursor.ImageDetail"
             android:label="@string/title_activity_picture">
         </activity>
     </application>

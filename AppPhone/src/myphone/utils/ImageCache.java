@@ -39,9 +39,20 @@ public class ImageCache {
 	
     private static ImageCache sInstance;
     
-    public static ImageCache getInstance(Context context) {
+    private static Context sContext;
+    
+    private ImageCache() {
+    	initMemoryCache();
+    	initDiskCache(sContext);
+    }
+    
+    public static void setInstance(Context context) {
+    	sContext = context;
+    }
+    
+    public static ImageCache getInstance() {
     	if (sInstance == null) {
-    		sInstance = new ImageCache(context);
+    		sInstance = new ImageCache();
     	}
     	return sInstance;
     }
@@ -65,15 +76,7 @@ public class ImageCache {
 		}
 		addBitmapToDiskCache(key, bitmap);
 	}
-	
-    private ImageCache(Context context) {
-    	init(context);
-    }
    
-    private void init(Context context) {
-    	initMemoryCache();
-    	initDiskCache(context);
-    }
 	/*
 	 * 初始化内存缓存 memory cache
 	 */

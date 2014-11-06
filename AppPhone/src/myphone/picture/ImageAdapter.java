@@ -60,10 +60,10 @@ public class ImageAdapter extends BaseAdapter {
 			viewHolder = (ViewHolder) view.getTag();
 		}
 		final String imageKey = String.valueOf(redId);
-		Bitmap bitmap = ImageCache.getInstance(mContext).getBitmapFromCache(imageKey);
+		Bitmap bitmap = ImageCache.getInstance().getBitmapFromCache(imageKey);
 		if (bitmap == null) {
 			bitmap = ImageUtil.getBitmapImage(mContext.getResources(), redId, 100, 100);
-			ImageCache.getInstance(mContext).addBitmapToCache(imageKey, bitmap);
+			ImageCache.getInstance().addBitmapToCache(imageKey, bitmap);
 		}
 		viewHolder.imageView.setImageBitmap(bitmap);
 		viewHolder.textView.setText("图片标题");

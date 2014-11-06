@@ -114,13 +114,13 @@ public class ImageActivity extends Activity {
 			
 			final String imageKey = String.valueOf(data);
 			Bitmap bitmap;
-			bitmap = ImageCache.getInstance(getApplicationContext()).getBitmapFromCache(imageKey);
+			bitmap = ImageCache.getInstance().getBitmapFromCache(imageKey);
 			if (bitmap != null) {
 				return bitmap;
 			}
 			bitmap = ImageUtil.getBitmapImage(data, 300, 300);
 			try {
-				ImageCache.getInstance(getApplicationContext()).addBitmapToCache(imageKey, bitmap);
+				ImageCache.getInstance().addBitmapToCache(imageKey, bitmap);
 			} catch (Exception e) {
 				Log.i(TAG, e.getMessage()+"");
 			}

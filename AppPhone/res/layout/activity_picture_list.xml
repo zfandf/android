@@ -4,10 +4,16 @@
     android:layout_height="match_parent"
     tools:context="myphone.picture.PictureActivity" >
 
-    <ListView
+    <!-- <ListView
         android:id="@+id/listview_picture"
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
-    </ListView>
+    </ListView> -->
+    <GridView 
+        android:id="@+id/listview_picture"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:numColumns="4">
+    </GridView>
 
 </RelativeLayout>

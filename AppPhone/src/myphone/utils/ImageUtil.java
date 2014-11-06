@@ -1,14 +1,9 @@
 package myphone.utils;
 
-import java.lang.ref.WeakReference;
-
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.util.Log;
-import android.widget.ImageView;
 
 /**
  * 图片处理
@@ -19,47 +14,15 @@ public class ImageUtil {
 	
 	private ImageUtil() {}
 	
-	// cancel worktask
-	public static boolean cancelPotentialWork(String path, ImageView imageView) {
-		final BitmapWorkerTask bitmapWorkerTask = getBitmapWorkerTask(imageView);
-		
-		if (bitmapWorkerTask != null) {
-			final String bitmapData = bitmapWorkerTask.data;
-			// if bitmapData is yes set or it differs from the new data
-			if (bitmapData == null  || bitmapData.equals(path)) {
-				// cancel previous task
-				bitmapWorkerTask.cancel(true);
-			} else {
-				// the same work is already in progress
-				return false;
-			}
-		}
-		// No task associated with the ImageView, or an existing task was canceled
-		return true;
-	}
-	
-	public static BitmapWorkerTask getBitmapWorkerTask(ImageView imageView) {
-		if (imageView != null) {
-			final Drawable drawable = imageView.getDrawable();
-			if (drawable instanceof AsyncDrawable) {
-				final AsyncDrawable asyncDrawable = (AsyncDrawable)drawable;
-				return asyncDrawable.getBitmapWorkerTask();
-			}
-		}
-		return null;
-	}
-	
-	static class AsyncDrawable extends BitmapDrawable {
-		private final WeakReference<BitmapWorkerTask> bitmapWorkerTaskReference;
-		
-		public AsyncDrawable(Resources res, Bitmap bitmap, BitmapWorkerTask bitmapWorkerTask) {
-			super(res, bitmap);
-			bitmapWorkerTaskReference = new WeakReference<BitmapWorkerTask>(bitmapWorkerTask);
-		}
-		
-		public BitmapWorkerTask getBitmapWorkerTask() {
-			return bitmapWorkerTaskReference.get();
-		}
+	public static Bitmap getBitmapImage(String path, int reqWidth) {
+		BitmapFactory.Options options = new BitmapFactory.Options();
+		options.inJustDecodeBounds = true;
+		BitmapFactory.decodeFile(path, options);
+
+		options.inSampleSize = getSampleSize(options, reqWidth);
+		options.inJustDecodeBounds = false;
+
+		return BitmapFactory.decodeFile(path, options);
 	}
 	
 	/*
@@ -96,6 +59,22 @@ public class ImageUtil {
 		
 		Bitmap bitmap = BitmapFactory.decodeResource(resources, resId, options);
 		return Bitmap.createScaledBitmap(bitmap, reqWidth, reqHeight, true);
+	}
+	
+	/*
+	 * 获得位图略缩倍数
+	 */
+	private static int getSampleSize(BitmapFactory.Options options, int reqWidth) {
+		final int resWidth = options.outWidth;
+		
+		int inSampleSize = 1;
+		if (resWidth > reqWidth) {
+			final int halfWidth = resWidth / 2;
+			while (halfWidth / inSampleSize > reqWidth) {
+				inSampleSize *= 2;
+			}
+		}
+		return inSampleSize;
 	}
 	
 	/*

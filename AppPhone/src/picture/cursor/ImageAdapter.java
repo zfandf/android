@@ -1,16 +1,16 @@
-package myphone.utils;
+package picture.cursor;
 
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.support.v4.widget.CursorAdapter;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class ImageAdapter extends CursorAdapter {
+public class ImageAdapter extends CursorAdapter implements View.OnClickListener {
 		
 		private Context mContext;
 		private Cursor mCursor;
@@ -18,8 +18,9 @@ public class ImageAdapter extends CursorAdapter {
 		private final int imageViewId;
 		private final int textViewId;
 		
-		public ImageAdapter(Context context, Cursor c, boolean autoRequery, int viewId, int imageId, int textId) {
-			super(context, c, autoRequery);
+		public ImageAdapter(Context context, Cursor c, int viewId, int imageId, int textId) {
+			super(context, c, false);
+			
 			mContext = context;
 			mCursor = c;
 			itemViewId = viewId;
@@ -47,8 +48,12 @@ public class ImageAdapter extends CursorAdapter {
 				viewHolder = (ViewHolder) view.getTag();
 			}
 			String path = mCursor.getString(1);
-//			loadBitmap(path, viewHolder.imageView);
+			viewHolder.imageView.setTag(path);
+			viewHolder.imageView.setOnClickListener(this);
+			ImageTask.getsInstance().loadBitmap(path, viewHolder.imageView);
+			
 			viewHolder.textView.setText(mCursor.getString(0));
+			
 			return view;
 		}
 		
@@ -67,6 +72,16 @@ public class ImageAdapter extends CursorAdapter {
 		public View newView(Context context, Cursor c, ViewGroup viewGroup) {
 			// TODO Auto-generated method stub
 			return null;
+		}
+
+		@Override
+		public void onClick(View v) {
+			String path = (String) v.getTag();
+			
+			Intent intent = new Intent();
+			intent.setClass(mContext, ImageDetail.class);
+			intent.putExtra(ImageDetail.PATH_NAME, path);
+			mContext.startActivity(intent);
 		}
 		
 	}
