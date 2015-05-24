@@ -1,9 +1,9 @@
 package myphone.activity;
 
+import picture.cursor.ImageActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -15,8 +15,9 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
 	private static Button tvAppBtn;
 	private static Button tvFileBtn;
 	private static Button tvContactBtn;
+	private static Button tvPictureBtn;
 	
-	private static String TAG = "main";
+//	private static String TAG = "main";
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -31,13 +32,9 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
 		
 		tvContactBtn = (Button)findViewById(R.id.id_main_btn_contacts);
 		tvContactBtn.setOnClickListener(this);
-		Log.i("<<start photo>>>", "hahahah");
-		getPhotos();
-	}
-	
-	public void getPhotos() {
-		Log.i("<<start photo>>>", "start");
-		Log.i("<<start photo>>>", "end");
+		
+		tvPictureBtn = (Button)findViewById(R.id.id_main_btn_picture);
+		tvPictureBtn.setOnClickListener(this);
 	}
 	
 	@Override
@@ -61,9 +58,7 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
 	
 	@Override
 	public void onClick(View v) {
-		// TODO Auto-generated method stub
 		int id = v.getId();
-		Log.i("<<<click>>>>", "" + id);
 		Intent intent = new Intent();
 		switch (id) {
 			case R.id.id_main_btn_applist:
@@ -71,13 +66,15 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
 				startActivity(intent);
 				break;
 			case R.id.id_main_btn_filelist:
-				Log.i("<<<click>>>", FileListActivity.class.getName());
 				intent.setClass(this, FileListActivity.class);
 				startActivity(intent);
 				break;
 			case R.id.id_main_btn_contacts:
-				Log.i("<<<click>>>", ContactsActivity.class.getName());
 				intent.setClass(this, ContactsActivity.class);
+				startActivity(intent);
+				break;
+			case R.id.id_main_btn_picture:
+				intent.setClass(this, ImageActivity.class);
 				startActivity(intent);
 				break;
 		}
@@ -86,9 +83,7 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
 	
 	@Override
 	public void onDestroy() {
-		// TODO Auto-generated method stub
 		super.onDestroy();
-		Log.i(TAG, "hahaha");
 		android.os.Debug.stopMethodTracing();
 	}
 }

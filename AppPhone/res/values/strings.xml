@@ -10,6 +10,7 @@
     <string name="main_btn_applist">应用列表</string>
     <string name="main_btn_filelist">文件列表</string>
     <string name="main_btn_contacts">联系人</string>
+    <string name="main_btn_picture">图片</string>
     <string name="title_activity_app_list">应用管理</string>
     <string name="title_activity_file_list">文件管理</string>
 

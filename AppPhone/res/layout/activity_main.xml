@@ -31,4 +31,12 @@
         android:layout_marginBottom="10dp"
         android:text="@string/main_btn_contacts" />
     
+    <Button
+        android:id="@+id/id_main_btn_picture"
+        style="@style/MainActivityStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:text="@string/main_btn_picture" />
+    
 </LinearLayout>
